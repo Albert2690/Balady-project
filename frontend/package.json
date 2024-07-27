@@ -10,7 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "axios": "^1.7.2",
+=======
+    "mongodb": "^6.8.0",
+>>>>>>> upstream/main
+=======
 
+>>>>>>> bea7a07bfc5f30e064bc93b7407c694e68aacba9
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
