@@ -6,7 +6,7 @@ function layout() {
       <div>
           <Header /> 
           <main>
-              
+             
           </main>
       <Footer/>
     </div>
