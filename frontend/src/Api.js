@@ -2,7 +2,7 @@ import axios from "axios";
 const API_URL =
   process.env.NODE_ENV === "development"
     
-        ? "http://localhost:5173/" :
+        ? "http://localhost:7007/" :
     console.log("ERR");
 
 const apiInstance = axios.create({

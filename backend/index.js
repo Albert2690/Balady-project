@@ -3,14 +3,28 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDb from './config/db.js';
 import adminRouter from './routers/adminRoutes.js';
+import cookieParser from "cookie-parser";
 
 const app =express()
 
-const router = express.Router()
-
-app.use('/admin',adminRouter)
 connectDb()
-app.use(cors())
+
+
+  app.use(express.json());
+app.use(cookieParser())
+
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization'
+};
+
+app.use(cors(corsOptions));
+
+app.use('/admin',adminRouter,)
+
+
+app.use(express.urlencoded({ extended: true }));
 
 
 

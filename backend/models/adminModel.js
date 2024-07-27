@@ -11,16 +11,16 @@ const userSchema = mongoose.Schema({
         require:true
     },
     mobile:{
-        type:String
+        type:Number
     },
     password:{
         type:String
     },
     is_admin:{
-        type:String
+        type:Boolean
     },
     is_blocked:{
-        type:String
+        type:Boolean
     }
 
     
@@ -42,13 +42,7 @@ userSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
   });
   
-  userSchema.methods.matchPassword = async (userPassword, Cpassword) => {
-    console.log(userPassword);
-  
-    const validPassword = await bcrypt.compare(userPassword, Cpassword);
-  
-    return validPassword;
-  };
+
   
   const User = mongoose.model("user", userSchema);
   

@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv'
+dotenv.config();
 
 const generateToken = (res, adminId) => {
-  const token = jwt.sign({ adminId, role: "admin" }, JWT_SECRETKEY_ADMIN, {
+  const token = jwt.sign({ adminId, role: "admin" }, process.env.JWT_SECRETKEY_ADMIN, {
     expiresIn: "40d",
   });
 

@@ -30,13 +30,14 @@ const Adminlogin = () => {
         password
       }
       )
-  if (response.ok) {
+      console.log(response,'response')
+  if (response.data.success) {
     toast.success("Login successful!");
   } else {
-    toast.error(data.message || "Login failed");
+    toast.error(response.data.error || "Login failed");
   }
     } catch (error) {
-      console.error("Error Login");
+      console.error(error.message);
             toast.error("An error occurred. Please try again later.");
 
     }
@@ -48,7 +49,7 @@ const Adminlogin = () => {
       <div className="h-screen bg-gradient-to-br from-white-600 to-indigo-600 flex justify-center items-center w-full">
         <form onSubmit={handleLogin}>
           <div className="bg-white px-10 py-8 rounded-xl w-screen shadow-md max-w-sm">
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h1 className="text-center text-2xl font-semibold text-gray-600">
                 Login
               </h1>

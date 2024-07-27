@@ -7,10 +7,10 @@ function layout() {
       <div>
           <Header /> 
           <main>
-<<<<<<< HEAD
+
  <Adminlogin/>
-=======
->>>>>>> bea7a07bfc5f30e064bc93b7407c694e68aacba9
+
+
 
           </main>
       <Footer/>
