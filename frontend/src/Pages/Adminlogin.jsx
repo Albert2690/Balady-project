@@ -25,6 +25,7 @@ const Adminlogin = () => {
     e.preventDefault()
     
     try {
+      console.log("lllll");
       const response = await apiInstance.post("/admin/login", {
         email,
         password
@@ -95,7 +96,7 @@ const Adminlogin = () => {
             </div>
             <button
               type="submit"
-              className="mt-4 w-full bg-gradient-to-tr from-green-900 to-green-900 text-indigo-100 py-2 rounded-md text-lg tracking-wide"
+              className="mt-4 w-full bg-gradient-to-tr from-teal-900 to-teal-900 text-indigo-100 py-2 rounded-md text-lg tracking-wide"
             >
               Login
             </button>

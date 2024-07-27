@@ -1,8 +1,11 @@
 import User from "../models/adminModel.js";
 
-const login = async(req,res)=>{
-    try{
-        const {email,password} = req.body
+const login = async (req, res) => {
+  console.log('welcome')
+  try {
+      console.log(req);
+      const { email, password } = req.body
+      
         const userExist = User.findOne({email:email})
 
         if (!email || !password) {

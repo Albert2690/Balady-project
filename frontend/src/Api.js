@@ -1,9 +1,8 @@
 import axios from "axios";
 const API_URL =
   process.env.NODE_ENV === "development"
-    
-        ? "http://localhost:5173/" :
-    console.log("ERR");
+  
+    ?"http://localhost:7007/":console.log('error');;
 
 const apiInstance = axios.create({
   baseURL: API_URL,
@@ -11,6 +10,7 @@ const apiInstance = axios.create({
 
 apiInstance.interceptors.request.use(
   (config) => {
+    console.log(config,'config');
     return config;
   },
   (error) => {
