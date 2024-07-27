@@ -4,6 +4,9 @@ import generateToken from '../utils/jwtConfig/adminJwtConfig/generateToken.js'
 
 
 
+
+
+
 const  matchPassword = async function (enteredPassword,userPassword) {
   return await bcrypt.compare(enteredPassword, userPassword);
 };

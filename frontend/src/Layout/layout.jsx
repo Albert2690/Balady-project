@@ -4,17 +4,15 @@ import Header from '../Components/Header/Header.jsx'
 import Adminlogin from '../Pages/Adminlogin.jsx'
 function layout() {
   return (
-      <div>
+    <>
+      
           <Header /> 
           <main>
 
  <Adminlogin/>
-
-
-
           </main>
       <Footer/>
-    </div>
+    </>
   )
 }
 
