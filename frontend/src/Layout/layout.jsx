@@ -7,7 +7,8 @@ function layout() {
       <div>
           <Header /> 
           <main>
-              <Adminlogin/>
+ <Adminlogin/>
+
           </main>
       <Footer/>
     </div>
