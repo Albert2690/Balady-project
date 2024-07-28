@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
+import studentRouter from "./routers/studentRoutes.js";
 import connectDb from './config/db.js';
 import adminRouter from './routers/adminRoutes.js';
 
@@ -35,6 +35,8 @@ app.use(cors(corsOptions));
 
 
 app.use("/admin", adminRouter);
+app.use("/student", studentRouter);
+
 
 
 

@@ -27,11 +27,12 @@ const login = async (req, res) => {
           return res.status(401).json({ error: "Invalid password. Password must be at least 4 characters long." });
       }
 
-      const userExist = await User.findOne({ email: email });
+      const userExist = await User.findOne({ email: email,is_admin:true });
       console.log(userExist)
 
       if (userExist) {
         console.log(userExist.password,'password')
+        
           const result = await matchPassword(password,userExist.password);
 
           if (result) {
@@ -77,11 +78,11 @@ const register = async (req, res) => {
       email: 'admin@gmail.com',
       
       password:'123456',
-      is_blocked: false,
+      is_blocked: false, 
       is_admin:true,
       
     });
-
+ 
     if (user) {
       const registeredUser = {
         name: user.name,
@@ -96,6 +97,20 @@ const register = async (req, res) => {
   }
 };
 
+const logoutAdmin = (req, res) => {
+  try{
+    res.cookie("adminJwt", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    });
+    res.status(200).json({ message: "Logged out successfully" });
+  }catch(err){
+    console.log(err)
+    res.status(500).json({error:"Internal Server Error"})
+  }
+  
+};
+
 export  {
-    login,register
+    login,register,logoutAdmin
 }
