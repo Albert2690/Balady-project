@@ -1,49 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import apiInstance from '../Api';
+import apiInstance from "../Api";
 import { toast } from "react-toastify";
 
 const Adminlogin = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("")
-  const [password,setPassword]=useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-
   const handleEmail = (e) => {
-    e.preventDefault()
-    setEmail(e.target.value)
-  }
+    e.preventDefault();
+    setEmail(e.target.value);
+  };
 
   const handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     try {
       console.log("lllll");
       const response = await apiInstance.post("/admin/login", {
         email,
-        password
+        password,
+      });
+      console.log(response, "response");
+      if (response.data.success) {
+        toast.success("Login successful!");
+      } else {
+        toast.error(response.data.error || "Login failed");
       }
-      )
-      console.log(response,'response')
-  if (response.data.success) {
-    toast.success("Login successful!");
-  } else {
-    toast.error(response.data.error || "Login failed");
-  }
     } catch (error) {
       console.error(error.message);
-            toast.error("An error occurred. Please try again later.");
-
+      toast.error("An error occurred. Please try again later.");
     }
-  }
-    
+  };
+
   return (
     <>
       {/* component */}
@@ -108,5 +105,4 @@ const Adminlogin = () => {
   );
 };
 
-
-export default Adminlogin
+export default Adminlogin;

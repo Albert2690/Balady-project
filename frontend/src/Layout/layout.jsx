@@ -1,19 +1,21 @@
 import React from 'react'
 import Footer from "../Components/Footer/Footer.jsx"
 import Header from '../Components/Header/Header.jsx'
-import Adminlogin from '../Pages/Adminlogin.jsx'
+import AdminRouter from '../Routes/adminRouter.jsx'
+import { BrowserRouter } from "react-router-dom";
+
 function layout() {
   return (
     <>
-      
-          <Header /> 
-          <main>
-
- <Adminlogin/>
-          </main>
-      <Footer/>
+      <Header />
+      <main>
+        <BrowserRouter>
+          <AdminRouter />
+        </BrowserRouter>
+      </main>
+      <Footer />
     </>
-  )
+  );
 }
 
 export default layout
