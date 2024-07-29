@@ -51,6 +51,22 @@ const studentSchema = mongoose.Schema(
         qr_code:{
             type:String
         },
+        nationality:{
+            type:String
+        },
+        Educational_Program_End_Date:{
+            type:Date
+        },
+        facility_Number:{
+            type:Number
+        },
+        facility_Name:{
+            type:String
+        },
+        type_Of_Educational_Program:{
+            type:String
+        },
+       
         
     },
     {
