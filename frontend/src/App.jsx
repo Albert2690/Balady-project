@@ -1,19 +1,25 @@
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Layout from "./Layout/layout.jsx"
 import ErrorBoundary from './Error/Errorboundary.jsx'
 
-function App() {
 
+import { BrowserRouter } from "react-router-dom";
+
+function App() {
   return (
     <>
-    {/* <ErrorBoundary> */}
-    <Layout/>
+     {/* <ErrorBoundary> */}
+     <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
+      {/* </ErrorBoundary> */}
 
-    {/* </ErrorBoundary> */}
     </>
+
   );
 }
 
-export default App
+export default App;

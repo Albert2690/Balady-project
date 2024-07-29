@@ -98,7 +98,7 @@ const AdminHome = () => {
   
   console.log(student,'studdd')
   return (
-    <>
+  <>
       {/* component */}
       <div className="bg-white p-4 sm:p-8 rounded-md w-full">
         <div className="flex flex-col md:flex-row items-start justify-between pb-6">
@@ -326,7 +326,7 @@ const AdminHome = () => {
           <div className="bg-white  border-4 rounded-lg shadow relative m-4 w-full max-w-3xl h-full max-h-screen overflow-y-auto">
             <div className="flex items-center justify-between pt-4 px-4 border-b rounded-t">
               <h3 className="text-xl font-semibold">STUDENTS</h3>
-          
+
               {/* component */}
 
               <div className="col-span-full m-8">
@@ -335,28 +335,16 @@ const AdminHome = () => {
                   className="block  h-14  text-sm font-medium leading-6 text-gray-900"
                 ></label>
                 <div className="mt-2 flex items-center gap-x-3">
-                {previewUrl ? <img className="w-[100px] h-[100px]" src={previewUrl} alt="" />:
-
                   <TbUserCircle
                     aria-hidden="true"
                     className="h-16 w-16 text-gray-300"
                   />
-      }
-                 <button
-        type="button"
-        className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-        onClick={handleButtonClick}
-      >
-        Change
-      </button>
-      <input
-        type="file"
-        
-        ref={fileInputRef}
-       className="hidden"
-        accept="image/jpeg,image/png,image/gif,image/bmp,image/tiff,image/svg+xml,image/webp"
-        onChange={handleFileChange}
-      />
+                  <button
+                    type="button"
+                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  >
+                    Change
+                  </button>
                 </div>
               </div>
 
@@ -380,6 +368,18 @@ const AdminHome = () => {
               </button>
             </div>
             <div className="p-6 space-y-6">
+              <div className="flex flex-col items-center">
+                <TbUserCircle
+                  aria-hidden="true"
+                  className="h-32 w-32 text-gray-300"
+                />
+                <button
+                  type="button"
+                  className="mt-2 rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                >
+                  Change
+                </button>
+              </div>
               <form action="#">
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 sm:col-span-3 relative">
@@ -695,6 +695,9 @@ const AdminHome = () => {
                onClick={handleSubmission}
               >
                 Submit
+              </button>
+              <button className="text-white ml-9 bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                Cancel
               </button>
             </div>
           </div>
