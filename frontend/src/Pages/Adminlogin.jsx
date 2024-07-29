@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import apiInstance from "../Api";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom"
 
 const Adminlogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
+  const navigate=useNavigate()
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -22,6 +26,7 @@ const Adminlogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); 
 
     try {
       console.log("lllll");
@@ -29,15 +34,16 @@ const Adminlogin = () => {
         email,
         password,
       });
-      console.log(response, "response");
+      console.log(response, "responseeeeeeeeeeeee");
       if (response.data.success) {
         toast.success("Login successful!");
+        navigate("/admin/home");
+
       } else {
-        toast.error(response.data.error || "Login failed");
+        setError(response.data.error || "Login failed");
       }
     } catch (error) {
-      console.error(error.message);
-      toast.error("An error occurred. Please try again later.");
+      setError(error.response?.data?.error || error.response?.data?.message || "An unexpected error occurred");
     }
   };
 
@@ -51,6 +57,9 @@ const Adminlogin = () => {
               <h1 className="text-center text-2xl font-semibold text-gray-600">
                 Login
               </h1>
+              {error && (
+                <div className="text-red-500 text-center mb-4">{error}</div>
+              )}
               <div className="relative">
                 <label
                   htmlFor="email"
