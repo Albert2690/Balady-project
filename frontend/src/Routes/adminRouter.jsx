@@ -11,6 +11,7 @@ function adminRouter() {
 
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/home" element={<AdminHome />} />
+        
       </Routes>
     </div>
   );

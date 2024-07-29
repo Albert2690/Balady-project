@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Layout from "./Layout/layout.jsx"
-
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import Layout from "./Layout/layout.jsx";
 function App() {
-
   return (
-    <>
-     <Layout/>
-    </>
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
   );
 }
 
-export default App
+export default App;
