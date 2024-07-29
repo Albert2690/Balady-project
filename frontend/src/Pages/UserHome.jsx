@@ -23,14 +23,15 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
+              {/* <input
                 type="text"
                 name="municipal"
                 id="municipal"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder=" "
                 required
-              />
+              /> */}
+              <span  className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -43,14 +44,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -63,14 +58,8 @@ const UserHome = () => {
               dir="rtl"
             >
               {" "}
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+              <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -83,14 +72,8 @@ const UserHome = () => {
               dir="rtl"
             >
               {" "}
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+              <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -103,14 +86,8 @@ const UserHome = () => {
               dir="rtl"
             >
               {" "}
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+              <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -123,14 +100,8 @@ const UserHome = () => {
               dir="rtl"
             >
               {" "}
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+              <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -143,14 +114,8 @@ const UserHome = () => {
               dir="rtl"
             >
               {" "}
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
-                placeholder=" "
-                required
-              />
+              <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -162,14 +127,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -181,14 +140,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="date"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                          <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -200,14 +153,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="date"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -219,14 +166,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="date"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                            <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -238,14 +179,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="date"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -257,14 +192,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="date"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -276,14 +205,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -295,14 +218,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -314,14 +231,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">Albert Sebastian James </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
@@ -333,14 +244,8 @@ const UserHome = () => {
               className="col-span-6 sm:col-span-3 relative flex items-center"
               dir="rtl"
             >
-              <input
-                type="text"
-                name="municipal"
-                id="municipal"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder=" "
-                required
-              />
+                           <span className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5">20 </span>
+
               <label
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
