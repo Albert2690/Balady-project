@@ -45,7 +45,7 @@ const UserHeader = () => {
             </svg>
           </button>
         </div>
-        <div className="flex-grow flex items-center justify-center lg:justify-start">
+        <div className="flex-grow flex items-center lg:justify-start">
           <div
             className={`w-full lg:flex lg:items-center lg:w-auto ${
               isMenuOpen ? "block" : "hidden"
@@ -56,13 +56,11 @@ const UserHeader = () => {
           </div>
         </div>
         <div className="flex items-center flex-shrink-0 ml-auto">
-         
-            <img
-              src="https://balady.gov.sa/themes/custom/balady_new/logo.svg" // Update with the path to your logo
-              alt="Logo"
-              className="h-9 w-30"
-            />
-         
+          <img
+            src="https://balady.gov.sa/themes/custom/balady_new/logo.svg" // Update with the path to your logo
+            alt="Logo"
+            className="h-9 w-30"
+          />
         </div>
       </div>
     </nav>

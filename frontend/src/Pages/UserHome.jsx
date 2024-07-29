@@ -6,8 +6,8 @@ import { TbUserCircle } from "react-icons/tb";
 const UserHome = () => {
 
   return (
-    <div className="bg-white items-center rounded-lg shadow-lg relative mx-4 sm:mx-6 md:mx-8 lg:mx-auto lg:max-w-3xl mt-9 w-full h-full max-h-90">
-      <div className="flex items-center justify-between  pt-4 px-4 border-b rounded-t">
+    <div className="bg-white items-center rounded-lg shadow-lg relative mx-4 sm:mx-6 md:mx-auto lg:mx-auto max-w-full sm:max-w-md md:max-w-lg lg:max-w-3xl mt-9 w-full h-full max-h-90 p-4 sm:p-6">
+      <div className="flex items-center justify-between pt-4 px-4 border-b rounded-t">
         <h3 className="text-xl font-semibold">Annual Health Certificate</h3>
       </div>
       <div className="p-4 sm:p-6 md:p-8 space-y-6">
@@ -55,7 +55,7 @@ const UserHome = () => {
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
               >
-                              Honesty
+                Honesty
               </label>
             </div>
             <div
@@ -75,7 +75,7 @@ const UserHome = () => {
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
               >
-                              ID_Number
+                ID_Number
               </label>
             </div>
             <div
@@ -95,7 +95,7 @@ const UserHome = () => {
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
               >
-                              Name
+                Name
               </label>
             </div>
             <div
@@ -115,7 +115,7 @@ const UserHome = () => {
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
               >
-                              Nationality
+                Nationality
               </label>
             </div>
             <div
@@ -135,7 +135,7 @@ const UserHome = () => {
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
               >
-                              Sex
+                Sex
               </label>
             </div>
             <div
@@ -155,7 +155,7 @@ const UserHome = () => {
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
               >
-                              Occupation
+                Occupation
               </label>
             </div>
             <div
@@ -307,7 +307,7 @@ const UserHome = () => {
                 htmlFor="municipal"
                 className="absolute text-sm font-medium text-gray-900 -top-2.5 right-2.5 bg-white px-1 flex items-center"
               >
-                              Facility Name
+                Facility Name
               </label>
             </div>
             <div
