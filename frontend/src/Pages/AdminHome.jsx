@@ -1,13 +1,102 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PiBarcode } from "react-icons/pi";
 import { TbUserCircle } from "react-icons/tb";
+import apiInstance from "../Api";
+import uploadImageCloudinary from "../../utils/uploadCloudinary";
+import { toast } from "react-toastify";
+
 const AdminHome = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const fileInputRef = useRef(null);
+  const [previewUrl, setPreviewUrl] = useState('');
+  const [selectedFile, setselectedFile] = useState('');
+
+
+  const [student, setStudent] = useState({
+    name: '',
+    honesty:'',
+    id_Number: '',
+    sex:'',
+    health_Certificate_Number:'',
+    date_Of_issue_Of_Health_Certificate_AD: '',
+    municipal:'',
+    health_Certificate_Issue_Date_Hijri:'',
+    health_Certificate_ExpiryDate_Gregorian:'',
+    health_Certificate_ExpiryDate_Hijri:'',
+    occupation:'',
+   
+    nationality:'',
+    Educational_Program_End_Date:'',
+    facility_Number:'',
+    facility_Name:'',
+    license_Number:'',
+    type_Of_Educational_Program:''
+
+
+
+
+
+
+  });
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+
+ 
+
+  const handleFileChange = async (event) => {
+    // if (file) {
+    //     try {
+    //         const uploadResponse = await uploadImageCloudinary(file);
+    //         console.log('File uploaded successfully:', uploadResponse.secure_url);
+    //         setStudent(state=>state.image=uploadResponse.secure_url)
+    //     } catch (error) {
+    //         console.error('Error uploading file:', error);
+    //     }
+    // }
+    const file = event.target.files[0];
+    console.log(file,'filet')
+
+    if (file) {
+      setselectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+};
+  
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+ 
+  const handleSubmission = async()=>{
+    console.log(student,'while submittinh')
+    try{
+      const uploadResponse = await uploadImageCloudinary(selectedFile);
+      
+     
+               const response = await apiInstance.post('student/create-student',{
+                student,
+                image:uploadResponse.secure_url
+               })
+
+               console.log(response,'after api call')
+               if(response.data.success){
+                toast.success('Student profile created successfully')
+               }else{
+                toast.error(response.data.error)
+               }
+
+    }catch(err){
+      console.log(err)
+      toast.error("Internal Server Error")
+    }
+  }
+  
+  console.log(student,'studdd')
   return (
     <>
       {/* component */}
@@ -234,10 +323,10 @@ const AdminHome = () => {
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 mt-2 z-50 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
-          <div className="bg-white border border-4 rounded-lg shadow relative m-4 w-full max-w-3xl h-full max-h-screen overflow-y-auto">
+          <div className="bg-white  border-4 rounded-lg shadow relative m-4 w-full max-w-3xl h-full max-h-screen overflow-y-auto">
             <div className="flex items-center justify-between pt-4 px-4 border-b rounded-t">
               <h3 className="text-xl font-semibold">STUDENTS</h3>
-
+          
               {/* component */}
 
               <div className="col-span-full m-8">
@@ -246,16 +335,28 @@ const AdminHome = () => {
                   className="block  h-14  text-sm font-medium leading-6 text-gray-900"
                 ></label>
                 <div className="mt-2 flex items-center gap-x-3">
+                {previewUrl ? <img className="w-[100px] h-[100px]" src={previewUrl} alt="" />:
+
                   <TbUserCircle
                     aria-hidden="true"
                     className="h-16 w-16 text-gray-300"
                   />
-                  <button
-                    type="button"
-                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                  >
-                    Change
-                  </button>
+      }
+                 <button
+        type="button"
+        className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        onClick={handleButtonClick}
+      >
+        Change
+      </button>
+      <input
+        type="file"
+        
+        ref={fileInputRef}
+       className="hidden"
+        accept="image/jpeg,image/png,image/gif,image/bmp,image/tiff,image/svg+xml,image/webp"
+        onChange={handleFileChange}
+      />
                 </div>
               </div>
 
@@ -288,6 +389,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, municipal: e.target.value}))}
                       required
                     />
                     <label
@@ -306,6 +408,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, honesty: e.target.value}))}
                       required
                     />
                     <label
@@ -322,6 +425,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, id_Number: e.target.value}))}
                       required
                     />
                     <label
@@ -338,6 +442,8 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, name: e.target.value}))}
+
                       required
                     />
                     <label
@@ -354,6 +460,8 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, nationality: e.target.value}))}
+
                       required
                     />
                     <label
@@ -370,6 +478,8 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, sex: e.target.value}))}
+
                       required
                     />
                     <label
@@ -386,6 +496,8 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, occupation: e.target.value}))}
+
                       required
                     />
                     <label
@@ -402,6 +514,8 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, health_Certificate_Number: e.target.value}))}
+
                       required
                     />
                     <label
@@ -419,6 +533,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, date_Of_issue_Of_Health_Certificate_AD: e.target.value}))}
                       required
                     />
                     <label
@@ -436,6 +551,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, health_Certificate_Issue_Date_Hijri: e.target.value}))}
                       required
                     />
                     <label
@@ -453,6 +569,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, health_Certificate_ExpiryDate_Gregorian: e.target.value}))}
                       required
                     />
                     <label
@@ -470,6 +587,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, health_Certificate_ExpiryDate_Hijri: e.target.value}))}
                       required
                     />
                     <label
@@ -487,6 +605,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, Educational_Program_End_Date: e.target.value}))}
                       required
                     />
                     <label
@@ -504,6 +623,8 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, type_Of_Educational_Program: e.target.value}))}
+
                       required
                     />
                     <label
@@ -521,6 +642,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, facility_Name: e.target.value}))}
                       required
                     />
                     <label
@@ -537,6 +659,7 @@ const AdminHome = () => {
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, license_Number: e.target.value}))}
                       required
                     />
                     <label
@@ -548,11 +671,12 @@ const AdminHome = () => {
                   </div>
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
-                      type="text"
+                      type="Number"
                       name="municipal"
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
+                      onChange={(e)=>setStudent((state)=>({ ...state, facility_Number: e.target.value}))}
                       required
                     />
                     <label
@@ -566,9 +690,9 @@ const AdminHome = () => {
               </form>
             </div>
             <div className="p-6 border-t border-gray-200 rounded-b">
-              <button
+              <button 
                 className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                type="submit"
+               onClick={handleSubmission}
               >
                 Submit
               </button>

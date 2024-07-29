@@ -7,18 +7,20 @@ import qrcode from 'qrcode'
 
 const createStudent = async(req,res)=>{
     try{
+      console.log(req.body,'bodyy')
   
-        const {name,municipal,image,id_Number,
+        const {name,municipal,id_Number,
             honesty,sex,health_Certificate_Number,
             date_Of_issue_Of_Health_Certificate_AD,
             health_Certificate_Issue_Date_Hijri,
             health_Certificate_ExpiryDate_Gregorian,
-            health_Certificate_ExpiryDate_Hijri,occupation}  = req.body
+            health_Certificate_ExpiryDate_Hijri,occupation}  = req.body.student
+            const image = req.body.image
 
-            const existingStudent = await StudentModel.findOne({id_Number:1})
-            if(existingStudent){
-               return  res.status(409).json({error:'User already exists'})
-            }
+            // const existingStudent = await StudentModel.findOne({id_Number:1})
+            // if(existingStudent){
+            //    return  res.status(409).json({error:'User already exists'})
+            // }
 
             const student = await StudentModel.create({
                 studentName:name,
@@ -26,11 +28,11 @@ const createStudent = async(req,res)=>{
                 id_Number:id_Number,
                 honesty:honesty,
                 sex:sex,
-                health_Certificate_Number:health_Certificate_Number,
-                date_Of_issue_Of_Health_Certificate_AD:date_Of_issue_Of_Health_Certificate_AD,
-                health_Certificate_Issue_Date_Hijri:health_Certificate_Issue_Date_Hijri,
-                health_Certificate_ExpiryDate_Gregorian:health_Certificate_ExpiryDate_Gregorian,
-                health_Certificate_ExpiryDate_Hijri:health_Certificate_ExpiryDate_Hijri,
+                health_Certificate_Number:Number(health_Certificate_Number),
+                date_Of_issue_Of_Health_Certificate_AD: new Date(date_Of_issue_Of_Health_Certificate_AD),
+                health_Certificate_Issue_Date_Hijri:new Date(health_Certificate_Issue_Date_Hijri),
+                health_Certificate_ExpiryDate_Gregorian:new Date(health_Certificate_ExpiryDate_Gregorian),
+                health_Certificate_ExpiryDate_Hijri:new Date(health_Certificate_ExpiryDate_Hijri),
                 occupation:occupation,
                 image:image,
                 
