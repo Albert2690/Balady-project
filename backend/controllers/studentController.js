@@ -5,7 +5,7 @@ import qrcode from 'qrcode'
 
 
 
-const createStudent = async(req,res)=>{
+const createStudent = async(req,res)=>{ 
     try{
       console.log(req.body,'bodyy')
   
