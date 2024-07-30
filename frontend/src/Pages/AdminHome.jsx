@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
-  const [selectedQRCode, setSelectedQRCode] = useState("");
+  const [selectedQRCode, setSelectedQRCode] = useState(null);
 
 const AdminHome = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
