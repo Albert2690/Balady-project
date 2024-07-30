@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
+  const [selectedQRCode, setSelectedQRCode] = useState("");
 
 const AdminHome = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -28,11 +29,15 @@ const AdminHome = () => {
   const handleCloseEditModal = () => {
     setIsEditModalOpen(false);
   };
-  const handleQRCode = () => {
+  const handleQRCode = (qrcode) => {
+        setSelectedQRCode(qrcode);
+
     setQRCodeModal(true);
   };
 
   const handleCloseQRCode = () => {
+        setIsQRCodeModal(false);
+
     setQRCodeModal(false);
   };
   const [student, setStudent] = useState({
@@ -179,9 +184,9 @@ const AdminHome = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-      const response = await apiInstance.get("/admin/students", {
-        withCredentials: true,
-      });
+        const response = await apiInstance.get("/admin/students", {
+          withCredentials: true,
+        });
         console.log(response.data.students, "Fetched students data");
 
         if (response.data && Array.isArray(response.data.students)) {
@@ -197,26 +202,29 @@ const AdminHome = () => {
 
   console.log(student, "studdd");
 
+  const handleDelete = async (studentId) => {
+    try {
+      const response = await apiInstance.put(
+        "/admin/edit-listing",
+        { id: studentId },
+        {
+          withCredentials: true,
+        }
+      );
 
-  const handleDelete = async (studentId)=> {
-  try {
-       const response = await apiInstance.put(
-         "/admin/edit-listing",
-         { id: studentId },
-         {
-           withCredentials: true,
-         }
-       );
-
-    console.log(response, 'response from edit listing');
-    toast.success(response.data.message)
-
+      console.log(response, "response from edit listing");
+      setData((prevData) =>
+        prevData.map((student) =>
+          student._id === studentId
+            ? { ...student, is_listed: !student.is_listed }
+            : student
+        )
+      );
+      toast.success(response.data.message);
     } catch (error) {
-      console.error('Error deleting student',error);
+      console.error("Error deleting student", error);
     }
-  }
-
-    const filteredData = data.filter((student) => student.is_listed);
+  };
 
   return (
     <>
@@ -338,18 +346,15 @@ const AdminHome = () => {
                               onClick={handleEditClick}
                             />
                             {student.is_listed ? (
-                              <FaEyeSlash
-                                className="text-green-500 w-6 h-6 cursor-pointer"
-                                // onClick={() => handleClick(student._id)}
-                              />
-                            ) : (
                               <FaRegEye
-                                className="text-red-500 w-6 h-6 cursor-pointer"
+                                className="text-green-500 w-6 h-6 cursor-pointer"
                                 onClick={() => handleDelete(student._id)}
                               />
+                            ) : (
+                              <FaEyeSlash className="text-red-500 w-6 h-6 cursor-pointer" />
                             )}
                             <PiBarcode
-                              onClick={handleQRCode}
+                              onClick={() => handleQRCode(student.qr_code)}
                               className="text-black w-6 h-6 cursor-pointer"
                             />
                           </div>
@@ -363,7 +368,9 @@ const AdminHome = () => {
         </div>
       </div>
       {isEditModalOpen && <EditModal onClose={handleCloseEditModal} />}
-      {isQRCodeModal && <QRCodeModal onClose={handleCloseQRCode} />}
+      {isQRCodeModal && (
+        <QRCodeModal onClose={handleCloseQRCode} qrcode={selectedQRCode} />
+      )}
       {isModalOpen && (
         <div className="fixed inset-0 mt-2 z-50 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
           <div className="bg-white  border-4 rounded-lg shadow relative m-4 w-full max-w-3xl h-full max-h-screen overflow-y-auto">
