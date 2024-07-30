@@ -36,10 +36,19 @@ console.log(qrcode,'qrcode');
         {/* Content */}
         <div className="flex flex-col items-center">
           <div className="mb-4">
-            <TbUserCircle
-              aria-hidden="true"
-              className="h-24 w-24 text-gray-300"
-            />
+            {qrcode ? (
+              <img
+                src={qrcode}
+                alt="QR Code"
+                className="h-24 w-24"
+                // Ensure you set any necessary styles for the QR code image
+              />
+            ) : (
+              <TbUserCircle
+                aria-hidden="true"
+                className="h-24 w-24 text-gray-300"
+              />
+            )}
           </div>
 
           <button
@@ -49,12 +58,6 @@ console.log(qrcode,'qrcode');
           >
             Print the code
           </button>
-          <input
-            type="file"
-            className="hidden"
-            accept="image/*"
-            // onChange={handleFileChange}
-          />
         </div>
       </div>
     </div>
