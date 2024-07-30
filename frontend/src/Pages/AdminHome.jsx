@@ -1,4 +1,5 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
+import { useEffect } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { PiBarcode } from "react-icons/pi";
@@ -16,6 +17,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedFile, setselectedFile] = useState("");
   const[error,setError] = useState({})
+const [data, setData] = useState([]);
 
    const handleEditClick = (student) => {
      setIsEditModalOpen(true);
@@ -169,6 +171,24 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
     }
   };
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await apiInstance.get("/admin/students");
+        console.log(response.data.students, "Fetched students data");
+
+        if (response.data && Array.isArray(response.data.students)) {
+          setData(response.data.students);
+        }
+      } catch (error) {
+        console.error("Error fetching students data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   console.log(student, "studdd");
   return (
     <>
@@ -233,52 +253,63 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 w-10 h-10">
-
-                          <img
-                            className="w-full h-full rounded-full"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                            alt=""
-                          />
-                        </div>
-                        <div className="ml-3">
+                  {Array.isArray(data) &&
+                    data.map((student, idx) => (
+                      <tr key={idx}>
+                        {" "}
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <div className="flex items-center">
+                            {/* <div className="flex-shrink-0 w-10 h-10">
+                              <img
+                                className="w-full h-full rounded-full"
+                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                                alt=""
+                              />
+                            </div> */}
+                            <div className="ml-3">
+                              <p className="text-gray-900 whitespace-no-wrap">
+                                {idx + 1}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            Vera Carpenter
+                            {student.studentName}
                           </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">Admin</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">
-                        Jan 21, 2020
-                      </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">43</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">hi</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <div className="flex space-x-4">
-                        <MdOutlineEdit
-                          className="text-blue-600 w-6 h-6 cursor-pointer"
-                          onClick={handleEditClick}
-                        />
-                        <RiDeleteBin6Line className="text-red-500 w-6 h-6 cursor-pointer" />
-                        <PiBarcode
-                          onClick={handleQRCode}
-                          className="text-black w-6 h-6 cursor-pointer"
-                        />
-                      </div>
-                    </td>
-                  </tr>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {student.id_Number}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {" "}
+                            {student.sex}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {" "}
+                            {student.nationality}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <div className="flex space-x-4">
+                            <MdOutlineEdit
+                              className="text-blue-600 w-6 h-6 cursor-pointer"
+                              onClick={handleEditClick}
+                            />
+                            <RiDeleteBin6Line className="text-red-500 w-6 h-6 cursor-pointer" />
+                            <PiBarcode
+                              onClick={handleQRCode}
+                              className="text-black w-6 h-6 cursor-pointer"
+                            />
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
@@ -286,9 +317,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
         </div>
       </div>
       {isEditModalOpen && <EditModal onClose={handleCloseEditModal} />}
-      {isQRCodeModal && (
-        <QRCodeModal onClose={handleCloseQRCode} />
-      )}
+      {isQRCodeModal && <QRCodeModal onClose={handleCloseQRCode} />}
       {isModalOpen && (
         <div className="fixed inset-0 mt-2 z-50 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
           <div className="bg-white  border-4 rounded-lg shadow relative m-4 w-full max-w-3xl h-full max-h-screen overflow-y-auto">
@@ -369,8 +398,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.municipal &&<span className="text-red-600 font-semibold text-xs">{error.municipal}</span> }    
-                <label
+                    {error.municipal && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.municipal}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1 flex items-center"
                     >
@@ -394,8 +427,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.honesty &&<span className="text-red-600 font-semibold text-xs">{error.honesty}</span> }    
-                <label
+                    {error.honesty && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.honesty}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -417,8 +454,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.id_Number &&<span className="text-red-600 font-semibold text-xs">{error.id_Number}</span> }    
-                <label
+                    {error.id_Number && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.id_Number}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -440,8 +481,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.name &&<span className="text-red-600 font-semibold text-xs">{error.name}</span> }    
-                <label
+                    {error.name && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.name}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -463,8 +508,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.nationality &&<span className="text-red-600 font-semibold text-xs">{error.nationality}</span> }    
-                <label
+                    {error.nationality && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.nationality}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -486,8 +535,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.sex &&<span className="text-red-600 font-semibold text-xs">{error.sex}</span> }    
-                <label
+                    {error.sex && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.sex}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -509,8 +562,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.occupation &&<span className="text-red-600 font-semibold text-xs">{error.occupation}</span> }    
-                <label
+                    {error.occupation && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.occupation}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -532,8 +589,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.health_Certificate_Number &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Number}</span> }    
-                <label
+                    {error.health_Certificate_Number && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.health_Certificate_Number}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -557,8 +618,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.date_Of_issue_Of_Health_Certificate_AD &&<span className="text-red-600 font-semibold text-xs">{error.date_Of_issue_Of_Health_Certificate_AD}</span> }    
-                <label
+                    {error.date_Of_issue_Of_Health_Certificate_AD && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.date_Of_issue_Of_Health_Certificate_AD}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -581,8 +646,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.health_Certificate_Issue_Date_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Issue_Date_Hijri}</span> }    
-                <label
+                    {error.health_Certificate_Issue_Date_Hijri && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.health_Certificate_Issue_Date_Hijri}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -606,8 +675,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.health_Certificate_ExpiryDate_Gregorian &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Gregorian}</span> }    
-                <label
+                    {error.health_Certificate_ExpiryDate_Gregorian && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.health_Certificate_ExpiryDate_Gregorian}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -630,8 +703,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.health_Certificate_ExpiryDate_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Hijri}</span> }    
-                <label
+                    {error.health_Certificate_ExpiryDate_Hijri && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.health_Certificate_ExpiryDate_Hijri}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -654,8 +731,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.Educational_Program_End_Date &&<span className="text-red-600 font-semibold text-xs">{error.Educational_Program_End_Date}</span> }    
-                <label
+                    {error.Educational_Program_End_Date && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.Educational_Program_End_Date}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -678,8 +759,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.type_Of_Educational_Program &&<span className="text-red-600 font-semibold text-xs">{error.type_Of_Educational_Program}</span> }    
-                <label
+                    {error.type_Of_Educational_Program && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.type_Of_Educational_Program}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -702,8 +787,12 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.facility_Name &&<span className="text-red-600 font-semibold text-xs">{error.facility_Name}</span> }    
-                <label
+                    {error.facility_Name && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.facility_Name}
+                      </span>
+                    )}
+                    <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -725,7 +814,11 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.license_Number &&<span className="text-red-600 font-semibold text-xs">{error.license_Number}</span> }    
+                    {error.license_Number && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.license_Number}
+                      </span>
+                    )}
                     <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -748,7 +841,11 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                {error.facility_Number &&<span className="text-red-600 font-semibold text-xs">{error.facility_Number}</span> }    
+                    {error.facility_Number && (
+                      <span className="text-red-600 font-semibold text-xs">
+                        {error.facility_Number}
+                      </span>
+                    )}
                     <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
