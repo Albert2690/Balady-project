@@ -10,7 +10,7 @@ adminRouter.post('/login',login)
 adminRouter.get('/register',register)
 adminRouter.get('/get-student/:id',authenticateAdmin,getStudentDetials)
 adminRouter.get('/students',authenticateAdmin,getStudents)
-adminRouter.post('/edit-listing',authenticateAdmin,editlisting)
+adminRouter.put('/edit-listing',authenticateAdmin,editlisting)
 
 
 

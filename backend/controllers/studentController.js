@@ -174,7 +174,8 @@ const getStudents = async(req,res)=>{
     res.status(500).json({error:"Internal Server Error"})
   }
 }
-const editlisting = async(req,res)=>{
+const editlisting = async (req, res) => {
+  
   try {
     const { id } = req.body;
     const existingStudent = await StudentModel.findOne({ _id: id });
