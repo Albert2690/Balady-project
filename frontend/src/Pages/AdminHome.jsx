@@ -5,7 +5,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { PiBarcode } from "react-icons/pi";
 import { TbUserCircle } from "react-icons/tb";
 import apiInstance from "../Api";
-import uploadImageCloudinary from "../../utils/uploadCloudinary";
+import uploadImageCloudinary from "../../utils/uploadCloudinary.js";
 import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
@@ -175,7 +175,7 @@ const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiInstance.get("/admin/students");
+        const response = await apiInstance.get("/admin/students",{withCredentials:true});
         console.log(response.data.students, "Fetched students data");
 
         if (response.data && Array.isArray(response.data.students)) {

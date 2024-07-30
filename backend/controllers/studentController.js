@@ -23,6 +23,7 @@ const createStudent = async (req, res) => {
       facility_Number,
       facility_Name,
       type_Of_Educational_Program,
+      license_Number
     } = req.body.student;
     const image = req.body.image;
 
@@ -72,9 +73,11 @@ const createStudent = async (req, res) => {
 
     const qrData = JSON.stringify({ studentName: student._id, redirectUrl });
     const qrCodeImageUrl = await generateAndUploadQrCode(qrData);
+    console.log(qrCodeImageUrl,'qrcodeedata')
 
-    student.qr = qrCodeImageUrl;
+    student.qr_code = qrCodeImageUrl;
     await student.save();
+    console.log(student,'after qr code savign') 
 
     res.status(201).json({ success: true, student });
   } catch (err) {
@@ -86,9 +89,11 @@ const createStudent = async (req, res) => {
 
 const editStudent = async (req, res) => {
   try {
+    const  id = req.body.studentId
+    console.log('updating',req.body.student)
     const {
-      id,
-      name,
+     
+      studentName,
       municipal,
       id_Number,
       honesty,
@@ -108,11 +113,12 @@ const editStudent = async (req, res) => {
     } = req.body.student;
 
     const image = req.body.image;
+    console.log(id,'id from updating')
 
     const updatedStudent = await StudentModel.findOneAndUpdate(
       { _id:id }, 
       {
-        studentName: name,
+        studentName,
         municipal: municipal,
         honesty: honesty,
         sex: sex,
@@ -128,6 +134,8 @@ const editStudent = async (req, res) => {
         facility_Number: facility_Number,
         facility_Name: facility_Name,
         type_Of_Educational_Program: type_Of_Educational_Program,
+        id_Number:id_Number,
+        license_Number:license_Number
       },
       { new: true } 
     );
@@ -180,7 +188,7 @@ const editlisting = async(req,res)=>{
     const existingStudent = await StudentModel.findOne({ _id: id });
     if (existingStudent) {
       existingStudent.is_listed = !existingStudent.is_listed;
-      await existingService.save();
+      await existingStudent.save();
       console.log("donee");
       res.status(204).json({ message: "Updated Successfully", succes: true });
     } else {

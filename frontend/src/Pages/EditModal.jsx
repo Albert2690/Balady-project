@@ -1,160 +1,226 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { TbCodeAsterisk, TbUserCircle } from "react-icons/tb";
 import apiInstance from "../Api";
 import { toast } from "react-toastify";
+import uploadImageCloudinary from "../../utils/uploadCloudinary.js";
+import DotLoader from 'react-spinners/DotLoader';
+
 
 const EditModal = ({ onClose }) => {
-//   const { id } = useParams(); // Get the id from URL parameters
+  const fileInputRef = useRef(null);
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [selectedFile, setselectedFile] = useState("");
+  const [error, setError] = useState({});
+  const [data, setData] = useState({
+    municipal: "",
+    honesty: "",
+    id_Number: "",
+    studentName: "",
+    nationality: "",
+    sex: "",
+    occupation: "",
+    health_Certificate_Number: "",
+    date_Of_issue_Of_Health_Certificate_AD: "",
+    health_Certificate_Issue_Date_Hijri: "",
+    health_Certificate_ExpiryDate_Gregorian: "",
+    health_Certificate_ExpiryDate_Hijri: "",
+    Educational_Program_End_Date: "",
+    type_Of_Educational_Program: "",
+    facility_Name: "",
+    license_Number: "",
+    facility_Number: "",
+  });
 
-const[error,setError] = useState({})
-const [data, setData] = useState({
-   municipal: "",
-   honesty: "",
-   id_Number: "",
-   studentName: "",
-   nationality: "",
-   sex: "",
-   occupation: "",
-   health_Certificate_Number: "",
-   date_Of_issue_Of_Health_Certificate_AD: "",
-   health_Certificate_Issue_Date_Hijri: "",
-   health_Certificate_ExpiryDate_Gregorian: "",
-   health_Certificate_ExpiryDate_Hijri: "",
-   Educational_Program_End_Date: "",
-   type_Of_Educational_Program: "",
-   facility_Name: "",
-   license_Number: "",
-   facility_Number: "",
-   
- });    
-      const formatDate = (dateString) => {
-        if (!dateString) return "";
-        return dateString.slice(0, 10);
-      };
+  const [isLoading,setisLoading] = useState(false)
+
+  const handleFileChange = async (event) => {
+    // if (file) {
+    //     try {
+    //         const uploadResponse = await uploadImageCloudinary(file);
+    //         console.log('File uploaded successfully:', uploadResponse.secure_url);
+    //         setStudent(state=>state.image=uploadResponse.secure_url)
+    //     } catch (error) {
+    //         console.error('Error uploading file:', error);
+    //     }
+    // }
+    const file = event.target.files[0];
+    console.log(file, "filet");
+
+    if (file) {
+      setselectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    return dateString.slice(0, 10);
+  };
   useEffect(() => {
     const fetchData = async () => {
-        try {
+      try {
+        setisLoading(true)
         const response = await apiInstance.get(
           "/student/get-student/66a87ad4743e6ac8ccdb295b"
-        ); 
-            if (response.data) {
-                const studentData = response.data.student;
-                setData({
-                    municipal: studentData.municipal || "",
-                    honesty: studentData.honesty || "",
-                    id_Number: studentData.id_Number || "",
-                    studentName: studentData.studentName || "",
-                    nationality: studentData.nationality || "",
-                    sex: studentData.sex || "",
-                    occupation: studentData.occupation || "",
-                    health_Certificate_Number: studentData.health_Certificate_Number || "",
-                    date_Of_issue_Of_Health_Certificate_AD: formatDate(studentData.date_Of_issue_Of_Health_Certificate_AD),
-                    health_Certificate_Issue_Date_Hijri: formatDate(studentData.health_Certificate_Issue_Date_Hijri),
-                    health_Certificate_ExpiryDate_Gregorian: formatDate(studentData.health_Certificate_ExpiryDate_Gregorian),
-                    health_Certificate_ExpiryDate_Hijri: formatDate(studentData.health_Certificate_ExpiryDate_Hijri),
-                    Educational_Program_End_Date: formatDate(studentData.Educational_Program_End_Date),
-                    type_Of_Educational_Program: studentData.type_Of_Educational_Program || "",
-                    facility_Name: studentData.facility_Name || "",
-                    license_Number: studentData.license_Number || "",
-                    facility_Number: studentData.facility_Number || "",
-                })
-            }   } catch (error) {
-        console.error("Error Fetching student data:", error.response.data.error);
+        );
+        if (response.data) {
+          const studentData = response.data.student;
+          setData({
+            municipal: studentData.municipal || "",
+            honesty: studentData.honesty || "",
+            id_Number: studentData.id_Number || "",
+            studentName: studentData.studentName || "",
+            nationality: studentData.nationality || "",
+            sex: studentData.sex || "",
+            occupation: studentData.occupation || "",
+            health_Certificate_Number:
+              studentData.health_Certificate_Number || "",
+            date_Of_issue_Of_Health_Certificate_AD: formatDate(
+              studentData.date_Of_issue_Of_Health_Certificate_AD
+            ),
+            health_Certificate_Issue_Date_Hijri: formatDate(
+              studentData.health_Certificate_Issue_Date_Hijri
+            ),
+            health_Certificate_ExpiryDate_Gregorian: formatDate(
+              studentData.health_Certificate_ExpiryDate_Gregorian
+            ),
+            health_Certificate_ExpiryDate_Hijri: formatDate(
+              studentData.health_Certificate_ExpiryDate_Hijri
+            ),
+            Educational_Program_End_Date: formatDate(
+              studentData.Educational_Program_End_Date
+            ),
+            type_Of_Educational_Program:
+              studentData.type_Of_Educational_Program || "",
+            facility_Name: studentData.facility_Name || "",
+            license_Number: studentData.license_Number || "",
+            facility_Number: studentData.facility_Number || "",
+           
+          });
+          setselectedFile(studentData.image);
+      setPreviewUrl(studentData.image);
+        }
+    setisLoading(false)
+      } catch (error) {
+        console.error(
+          "Error Fetching student data:",
+          error.response.data.error
+        );
       }
     };
 
     fetchData();
   }, []);
 
-  console.log(data.nationality,'nation')
-    
-  const handleSubmission = ()=>{
+
+  const handleSubmission = () => {
     console.log(data, "while submittinh");
-    const newErrors = {}
-    if (data.name === '' ) {
-      newErrors.name = 'Student name should be more than 2 characters';
+    const newErrors = {};
+    if (data.name === "") {
+      newErrors.name = "Student name should be more than 2 characters";
     }
-    if (data.municipal === '') {
-      newErrors.municipal = 'Municipal should not be empty';
+    if (data.municipal === "") {
+      newErrors.municipal = "Municipal should not be empty";
     }
-    if (data.id_Number === '' || data.id_Number <= 0) {
-      newErrors.id_Number = 'Enter a valid ID number';
+    if (data.id_Number === "" || data.id_Number <= 0) {
+      newErrors.id_Number = "Enter a valid ID number";
     }
-    if (data.honesty === '') {
-      newErrors.honesty = 'Honesty should not be empty';
+    if (data.honesty === "") {
+      newErrors.honesty = "Honesty should not be empty";
     }
-    if (data.sex === '') {
-      newErrors.sex = 'Sex should not be empty';
+    if (data.sex === "") {
+      newErrors.sex = "Sex should not be empty";
     }
-    if (data.health_Certificate_Number === '') {
-      newErrors.health_Certificate_Number = 'Health Certificate Number should not be empty';
+    if (data.health_Certificate_Number === "") {
+      newErrors.health_Certificate_Number =
+        "Health Certificate Number should not be empty";
     }
-    if (data.date_Of_issue_Of_Health_Certificate_AD === '') {
-      newErrors.date_Of_issue_Of_Health_Certificate_AD = 'Date of Issue of Health Certificate (AD) should not be empty';
+    if (data.date_Of_issue_Of_Health_Certificate_AD === "") {
+      newErrors.date_Of_issue_Of_Health_Certificate_AD =
+        "Date of Issue of Health Certificate (AD) should not be empty";
     }
-    if (data.health_Certificate_Issue_Date_Hijri === '') {
-      newErrors.health_Certificate_Issue_Date_Hijri = 'Health Certificate Issue Date (Hijri) should not be empty';
+    if (data.health_Certificate_Issue_Date_Hijri === "") {
+      newErrors.health_Certificate_Issue_Date_Hijri =
+        "Health Certificate Issue Date (Hijri) should not be empty";
     }
-    if (data.health_Certificate_ExpiryDate_Gregorian === '') {
-      newErrors.health_Certificate_ExpiryDate_Gregorian = 'Health Certificate Expiry Date (Gregorian) should not be empty';
+    if (data.health_Certificate_ExpiryDate_Gregorian === "") {
+      newErrors.health_Certificate_ExpiryDate_Gregorian =
+        "Health Certificate Expiry Date (Gregorian) should not be empty";
     }
-    if (data.health_Certificate_ExpiryDate_Hijri === '') {
-      newErrors.health_Certificate_ExpiryDate_Hijri = 'Health Certificate Expiry Date (Hijri) should not be empty';
+    if (data.health_Certificate_ExpiryDate_Hijri === "") {
+      newErrors.health_Certificate_ExpiryDate_Hijri =
+        "Health Certificate Expiry Date (Hijri) should not be empty";
     }
-    if (data.occupation === '') {
-      newErrors.occupation = 'Occupation should not be empty';
+    if (data.occupation === "") {
+      newErrors.occupation = "Occupation should not be empty";
     }
-    if (data.nationality === '') {
-      newErrors.nationality = 'Nationality should not be empty';
+    if (data.nationality === "") {
+      newErrors.nationality = "Nationality should not be empty";
     }
-    if (data.Educational_Program_End_Date === '') {
-      newErrors.Educational_Program_End_Date = 'Educational Program End Date should not be empty';
+    if (data.Educational_Program_End_Date === "") {
+      newErrors.Educational_Program_End_Date =
+        "Educational Program End Date should not be empty";
     }
-    if (data.facility_Number === '') {
-      newErrors.facility_Number = 'Facility Number should not be empty';
+    if (data.facility_Number === "") {
+      newErrors.facility_Number = "Facility Number should not be empty";
     }
-    if (data.facility_Name === '') {
-      newErrors.facility_Name = 'Facility Name should not be empty';
+    if (data.facility_Name === "") {
+      newErrors.facility_Name = "Facility Name should not be empty";
     }
-    if (data.type_Of_Educational_Program === '') {
-      newErrors.type_Of_Educational_Program = 'Type of Educational Program should not be empty';
+    if (data.type_Of_Educational_Program === "") {
+      newErrors.type_Of_Educational_Program =
+        "Type of Educational Program should not be empty";
     }
-    if (data.license_Number === '') {
-      console.log('licendcee')
-      newErrors.license_Number = 'Type of license_Number should not be empty';
+    if (data.license_Number === "") {
+      console.log("licendcee");
+      newErrors.license_Number = "Type of license_Number should not be empty";
     }
-console.log(newErrors,'error new error')
-    setError(newErrors)
+    console.log(newErrors, "error new error");
+    setError(newErrors);
     if (Object.keys(newErrors).length === 0) {
-      setError({})
+      setError({});
       handleSubmit();
     }
-  
-  }
-  console.log(error,'error')
-    
-const handleChange = (e) => {
+  };
+  console.log(error, "error");
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name,value,'ko');
-  setData((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
-};
+    console.log(name, value, "ko");
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-
-  
   const handleSubmit = async (e) => {
-    console.log('heloooooooooooooo')
+    console.log("heloooooooooooooo");
+    let uploadResponse
     try {
+
+      setisLoading(true)
+      if(selectedFile!==''){
+        uploadResponse = await uploadImageCloudinary(selectedFile);
+
+      }
       const response = await apiInstance.put(
-        "/student/edit-student/66a87ad4743e6ac8ccdb295b",
-        data
+        "/student/edit-student",
+       {student:data,
+        studentId:'66a87ad4743e6ac8ccdb295b',
+        image:uploadResponse.secure_url
+       },
+        { withCredentials: true }
       );
-      console.log(response.data.success,'responseee');
+      console.log(response.data.success, "responseee");
       if (response.data.success) {
+      setisLoading(false)
+      onClose();
+
         toast.success("Student data updated successfully");
-        onClose(); 
+        location.reload()
       } else {
         toast.error("Failed to update student data");
       }
@@ -164,9 +230,17 @@ const handleChange = (e) => {
     }
   };
 
-  console.log(data,'imgg');
+  console.log(data, "imgg");
   return (
-    <div className="fixed inset-0 mt-2 z-50 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
+<>
+{isLoading && (
+        <div className="fixed inset-0 w-full h-full flex items-center  bg-opacity-50 justify-center  z-50">
+          <DotLoader  color="green"
+  size={80} />
+        </div>
+      )}
+    
+    {!isLoading && <div className="fixed inset-0 mt-2 z-40 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
       <div className="bg-white  border-4 rounded-lg shadow relative m-4 w-full max-w-3xl h-full max-h-screen overflow-y-auto">
         <div className="flex items-center justify-between pt-4 px-4 border-b rounded-t">
           <h3 className="text-xl font-semibold">STUDENTS</h3>
@@ -179,27 +253,32 @@ const handleChange = (e) => {
               className="block  h-14  text-sm font-medium leading-6 text-gray-900"
             ></label>
             <div className="mt-2 flex items-center gap-x-3">
-              <img className="w-[100px] h-[100px]" src={data?.image} alt="" />
-
-              <TbUserCircle
-                aria-hidden="true"
-                // value={data?.image}
-                className="h-16 w-16 text-gray-300"
-              />
-
+            
+            {previewUrl? (
+                    <img
+                      className="w-[100px] h-[100px]"
+                      src={previewUrl}
+                      alt=""
+                    />
+                  ) : (
+                    <TbUserCircle
+                      aria-hidden="true"
+                      className="h-16 w-16 text-gray-300"
+                    />
+                  )}
               <button
                 type="button"
                 className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                // onClick={handleButtonClick}
+                onClick={handleButtonClick}
               >
                 Change
               </button>
               <input
                 type="file"
-                // ref={fileInputRef}
+                ref={fileInputRef}
                 className="hidden"
                 accept="image/jpeg,image/png,image/gif,image/bmp,image/tiff,image/svg+xml,image/webp"
-                // onChange={handleFileChange}
+                onChange={handleFileChange}
               />
             </div>
           </div>
@@ -237,7 +316,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.municipal &&<span className="text-red-600 font-semibold text-xs">{error.municipal}</span> }    
+                {error.municipal && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.municipal}
+                  </span>
+                )}
 
                 <label
                   htmlFor="municipal"
@@ -259,7 +342,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.honesty &&<span className="text-red-600 font-semibold text-xs">{error.honesty}</span> }    
+                {error.honesty && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.honesty}
+                  </span>
+                )}
 
                 <label
                   htmlFor="honesty"
@@ -279,7 +366,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.id_Number &&<span className="text-red-600 font-semibold text-xs">{error.id_Number}</span> }    
+                {error.id_Number && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.id_Number}
+                  </span>
+                )}
 
                 <label
                   htmlFor="idnumber"
@@ -299,7 +390,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.studentName &&<span className="text-red-600 font-semibold text-xs">{error.studentName}</span> }    
+                {error.studentName && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.studentName}
+                  </span>
+                )}
 
                 <label
                   htmlFor="studentname"
@@ -319,7 +414,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.nationality &&<span className="text-red-600 font-semibold text-xs">{error.nationality}</span> }    
+                {error.nationality && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.nationality}
+                  </span>
+                )}
 
                 <label
                   htmlFor="nationality"
@@ -339,7 +438,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.sex &&<span className="text-red-600 font-semibold text-xs">{error.sex}</span> }    
+                {error.sex && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.sex}
+                  </span>
+                )}
 
                 <label
                   htmlFor="sex"
@@ -359,7 +462,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.occupation &&<span className="text-red-600 font-semibold text-xs">{error.occupation}</span> }    
+                {error.occupation && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.occupation}
+                  </span>
+                )}
 
                 <label
                   htmlFor="occupation"
@@ -379,7 +486,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.health_Certificate_Number &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Number}</span> }    
+                {error.health_Certificate_Number && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.health_Certificate_Number}
+                  </span>
+                )}
 
                 <label
                   htmlFor="certificate"
@@ -400,7 +511,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.date_Of_issue_Of_Health_Certificate_AD &&<span className="text-red-600 font-semibold text-xs">{error.date_Of_issue_Of_Health_Certificate_AD}</span> }    
+                {error.date_Of_issue_Of_Health_Certificate_AD && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.date_Of_issue_Of_Health_Certificate_AD}
+                  </span>
+                )}
 
                 <label
                   htmlFor="issuecertificate"
@@ -421,7 +536,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.health_Certificate_Issue_Date_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Issue_Date_Hijri}</span> }    
+                {error.health_Certificate_Issue_Date_Hijri && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.health_Certificate_Issue_Date_Hijri}
+                  </span>
+                )}
 
                 <label
                   htmlFor="issuedate"
@@ -442,7 +561,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.health_Certificate_ExpiryDate_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Hijri}</span> }    
+                {error.health_Certificate_ExpiryDate_Hijri && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.health_Certificate_ExpiryDate_Hijri}
+                  </span>
+                )}
 
                 <label
                   htmlFor="expiry"
@@ -463,7 +586,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.health_Certificate_ExpiryDate_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Hijri}</span> }    
+                {error.health_Certificate_ExpiryDate_Hijri && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.health_Certificate_ExpiryDate_Hijri}
+                  </span>
+                )}
 
                 <label
                   htmlFor="expirydate"
@@ -484,7 +611,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.Educational_Program_End_Date &&<span className="text-red-600 font-semibold text-xs">{error.Educational_Program_End_Date}</span> }    
+                {error.Educational_Program_End_Date && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.Educational_Program_End_Date}
+                  </span>
+                )}
 
                 <label
                   htmlFor="edprogram"
@@ -505,7 +636,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.type_Of_Educational_Program &&<span className="text-red-600 font-semibold text-xs">{error.type_Of_Educational_Program}</span> }    
+                {error.type_Of_Educational_Program && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.type_Of_Educational_Program}
+                  </span>
+                )}
 
                 <label
                   htmlFor="programType"
@@ -526,7 +661,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.facility_Name &&<span className="text-red-600 font-semibold text-xs">{error.facility_Name}</span> }    
+                {error.facility_Name && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.facility_Name}
+                  </span>
+                )}
 
                 <label
                   htmlFor="facilityname"
@@ -546,7 +685,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.license_Number &&<span className="text-red-600 font-semibold text-xs">{error.license_Number}</span> }    
+                {error.license_Number && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.license_Number}
+                  </span>
+                )}
 
                 <label
                   htmlFor="license"
@@ -566,8 +709,11 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
-                {error.facility_Number &&<span className="text-red-600 font-semibold text-xs">{error.facility_Number}</span> }    
-                <span className="text-red-600 font-semibold text-xs">jkbj</span>
+                {error.facility_Number && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.facility_Number}
+                  </span>
+                )}
 
                 <label
                   htmlFor="facilitynumber"
@@ -589,9 +735,10 @@ const handleChange = (e) => {
         </div>
       </div>
     </div>
+}
+</>
+
   );
 };
-
-
 
 export default EditModal;
