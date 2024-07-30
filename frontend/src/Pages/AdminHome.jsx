@@ -10,10 +10,11 @@ import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
-  const [selectedQRCode, setSelectedQRCode] = useState("");
 
 const AdminHome = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedQRCode, setSelectedQRCode] = useState("");
+  const [search,setSearch]= useState('')
   const [isQRCodeModal, setQRCodeModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const fileInputRef = useRef(null);
@@ -36,7 +37,7 @@ const AdminHome = () => {
   };
 
   const handleCloseQRCode = () => {
-        setIsQRCodeModal(false);
+       
 
     setQRCodeModal(false);
   };
@@ -184,7 +185,7 @@ const AdminHome = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiInstance.get("/admin/students");
+        const response = await apiInstance.get("/admin/students",{withCredentials:true});
         console.log(response.data.students, "Fetched students data");
 
         if (response.data && Array.isArray(response.data.students)) {
@@ -223,6 +224,10 @@ const AdminHome = () => {
       console.error("Error deleting student", error);
     }
   };
+  let filteredStudents = data.filter(
+    (user) =>
+      user.studentName.toLowerCase().includes(search.toLowerCase()) 
+  );
 
   return (
     <>
@@ -249,6 +254,7 @@ const AdminHome = () => {
               <input
                 className="bg-gray-50 outline-none ml-1 block w-full"
                 type="text"
+                onChange={(e)=>setSearch(e.target.value)}
                 placeholder="search..."
               />
             </div>
@@ -287,8 +293,8 @@ const AdminHome = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.isArray(data) &&
-                    data.map((student, idx) => (
+                  {Array.isArray(filteredStudents) &&
+                    filteredStudents.map((student, idx) => (
                       <tr key={idx}>
                         {" "}
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -339,9 +345,9 @@ const AdminHome = () => {
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex space-x-4">
-                            <MdOutlineEdit
+                            <MdOutlineEdit 
                               className="text-blue-600 w-6 h-6 cursor-pointer"
-                              onClick={handleEditClick}
+                              onClick={()=>handleEditClick(student._id)}
                             />
                             {student.is_listed ? (
                               <FaRegEye
