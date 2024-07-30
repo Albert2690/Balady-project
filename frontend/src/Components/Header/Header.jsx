@@ -1,13 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
+import Cookie from "js-cookie";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkAuthentication = () => {
+      const token = Cookie.get("adminJwt");
+      setIsAuthenticated(!!token);
+    };
+
+    checkAuthentication();
+
+    const interval = setInterval(() => {
+      checkAuthentication();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLogout = () => {
+    Cookie.remove("adminJwt");
+    window.location.href = "/admin/login";
+  };
   return (
     <nav className="bg-teal-900 border-gray-200 dark:bg-teal-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -96,18 +117,30 @@ function Header() {
                   Knowledge Center
                 </a>
               </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 ml-9 mr-9 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  <FaSignOutAlt className="mr-2" />
-                </a>
-              </li>
+              {isAuthenticated ? (
+                <li>
+                  <a
+                    href="#"
+                    className="block py-2 px-3 ml-9 mr-9 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    onClick={handleLogout}
+                  >
+                    <FaSignOutAlt className="mr-2" />
+                  </a>
+                </li>
+              ) : (
+                <li>
+                  <a
+                    href="/admin/login"
+                    className="block py-2 px-3 ml-9 mr-9 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    Login
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
-      
+
         <img
           src="https://balady.gov.sa/themes/custom/balady_new/logo.svg"
           alt="Logo"
