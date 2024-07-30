@@ -2,15 +2,23 @@ import React from 'react'
 import AdminLogin from "../Pages/Adminlogin.jsx"
 import AdminHome from '../Pages/AdminHome.jsx';
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoutes from '../protectedRoutes/protectedRoute.jsx';
 
 function adminRouter() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<AdminLogin />} />
 
-        <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route path='' element={<ProtectedRoutes/>}>
+        <Route path="/admin" element={<AdminHome />} />
+        <Route path="/" element={<AdminHome />} />
+
+
+
+        </Route>
+        
         
       </Routes>
     </div>

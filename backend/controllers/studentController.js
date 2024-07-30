@@ -34,7 +34,7 @@ const createStudent = async (req, res) => {
     const student = new StudentModel({
       studentName: name,
       municipal,
-      id_Number,
+      id_Number:id_Number,
       honesty,
       sex,
       health_Certificate_Number: Number(health_Certificate_Number),
@@ -49,6 +49,7 @@ const createStudent = async (req, res) => {
       facility_Number,
       facility_Name,
       type_Of_Educational_Program,
+      license_Number:Number(license_Number)
     });
 
     await student.save();

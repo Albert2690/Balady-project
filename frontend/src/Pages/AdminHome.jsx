@@ -15,6 +15,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedFile, setselectedFile] = useState("");
+  const[error,setError] = useState({})
 
    const handleEditClick = (student) => {
      setIsEditModalOpen(true);
@@ -78,23 +79,88 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
     fileInputRef.current.click();
   };
 
-  const handleSubmission = async () => {
+  const handleSubmission = ()=>{
     console.log(student, "while submittinh");
+    const newErrors = {}
+    if (student.name === '' || student.name.length < 3) {
+      newErrors.name = 'Student name should be more than 2 characters';
+    }
+    if (student.municipal === '') {
+      newErrors.municipal = 'Municipal should not be empty';
+    }
+    if (student.id_Number === '' || student.id_Number <= 0) {
+      newErrors.id_Number = 'Enter a valid ID number';
+    }
+    if (student.honesty === '') {
+      newErrors.honesty = 'Honesty should not be empty';
+    }
+    if (student.sex === '') {
+      newErrors.sex = 'Sex should not be empty';
+    }
+    if (student.health_Certificate_Number === '') {
+      newErrors.health_Certificate_Number = 'Health Certificate Number should not be empty';
+    }
+    if (student.date_Of_issue_Of_Health_Certificate_AD === '') {
+      newErrors.date_Of_issue_Of_Health_Certificate_AD = 'Date of Issue of Health Certificate (AD) should not be empty';
+    }
+    if (student.health_Certificate_Issue_Date_Hijri === '') {
+      newErrors.health_Certificate_Issue_Date_Hijri = 'Health Certificate Issue Date (Hijri) should not be empty';
+    }
+    if (student.health_Certificate_ExpiryDate_Gregorian === '') {
+      newErrors.health_Certificate_ExpiryDate_Gregorian = 'Health Certificate Expiry Date (Gregorian) should not be empty';
+    }
+    if (student.health_Certificate_ExpiryDate_Hijri === '') {
+      newErrors.health_Certificate_ExpiryDate_Hijri = 'Health Certificate Expiry Date (Hijri) should not be empty';
+    }
+    if (student.occupation === '') {
+      newErrors.occupation = 'Occupation should not be empty';
+    }
+    if (student.nationality === '') {
+      newErrors.nationality = 'Nationality should not be empty';
+    }
+    if (student.Educational_Program_End_Date === '') {
+      newErrors.Educational_Program_End_Date = 'Educational Program End Date should not be empty';
+    }
+    if (student.facility_Number === '') {
+      newErrors.facility_Number = 'Facility Number should not be empty';
+    }
+    if (student.facility_Name === '') {
+      newErrors.facility_Name = 'Facility Name should not be empty';
+    }
+    if (student.type_Of_Educational_Program === '') {
+      newErrors.type_Of_Educational_Program = 'Type of Educational Program should not be empty';
+    }
+
+    setError(newErrors)
+    if (Object.keys(newErrors).length === 0) {
+      setError({})
+      handleApi();
+    }
+  
+  }
+  const handleApi = async () => {
     try {
-      const uploadResponse = await uploadImageCloudinary(selectedFile);
+   
+        const uploadResponse = await uploadImageCloudinary(selectedFile);
+  
+        const response = await apiInstance.post("student/create-student", {
+          student,
+          image: uploadResponse.secure_url,
+        },{
+          withCredentials:true
+        });
+  
+        console.log(response, "after api call");
+        if (response.data.success) {
+          toast.success("Student profile created successfully");
+        } else {
+          toast.error(response.data.error);
+        }
 
-      const response = await apiInstance.post("student/create-student", {
-        student,
-        image: uploadResponse.secure_url,
-      });
+    
 
-      console.log(response, "after api call");
-      if (response.data.success) {
-        toast.success("Student profile created successfully");
-      } else {
-        toast.error(response.data.error);
-      }
-    } catch (err) {
+   
+  }catch (err) {
       console.log(err);
       toast.error("Internal Server Error");
     }
@@ -168,6 +234,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 w-10 h-10">
+
                           <img
                             className="w-full h-full rounded-full"
                             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
@@ -299,7 +366,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.municipal &&<span className="text-red-600 font-semibold text-xs">{error.municipal}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1 flex items-center"
                     >
@@ -323,7 +391,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.honesty &&<span className="text-red-600 font-semibold text-xs">{error.honesty}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -332,7 +401,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                   </div>
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
-                      type="text"
+                      type="Number"
                       name="municipal"
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
@@ -345,7 +414,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.id_Number &&<span className="text-red-600 font-semibold text-xs">{error.id_Number}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -367,7 +437,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.name &&<span className="text-red-600 font-semibold text-xs">{error.name}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -389,7 +460,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.nationality &&<span className="text-red-600 font-semibold text-xs">{error.nationality}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -411,7 +483,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.sex &&<span className="text-red-600 font-semibold text-xs">{error.sex}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -433,7 +506,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.occupation &&<span className="text-red-600 font-semibold text-xs">{error.occupation}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -442,7 +516,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                   </div>
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
-                      type="text"
+                      type="Number"
                       name="municipal"
                       id="municipal"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
@@ -455,7 +529,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.health_Certificate_Number &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Number}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -479,7 +554,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.date_Of_issue_Of_Health_Certificate_AD &&<span className="text-red-600 font-semibold text-xs">{error.date_Of_issue_Of_Health_Certificate_AD}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -502,7 +578,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.health_Certificate_Issue_Date_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Issue_Date_Hijri}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -526,7 +603,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.health_Certificate_ExpiryDate_Gregorian &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Gregorian}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -549,7 +627,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.health_Certificate_ExpiryDate_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Hijri}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -572,7 +651,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.Educational_Program_End_Date &&<span className="text-red-600 font-semibold text-xs">{error.Educational_Program_End_Date}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -595,7 +675,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.type_Of_Educational_Program &&<span className="text-red-600 font-semibold text-xs">{error.type_Of_Educational_Program}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -618,7 +699,8 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
-                    <label
+                {error.facility_Name &&<span className="text-red-600 font-semibold text-xs">{error.facility_Name}</span> }    
+                <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
@@ -640,6 +722,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
+                {error.license_Number &&<span className="text-red-600 font-semibold text-xs">{error.license_Number}</span> }    
                     <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -662,6 +745,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                       }
                       required
                     />
+                {error.facility_Number &&<span className="text-red-600 font-semibold text-xs">{error.facility_Number}</span> }    
                     <label
                       htmlFor="municipal"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"

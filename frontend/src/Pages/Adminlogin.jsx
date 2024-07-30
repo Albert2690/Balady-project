@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import apiInstance from "../Api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom"
+import Cookies from 'js-cookie';
+import { Navigate } from "react-router-dom";
+
+
+
+
 
 const Adminlogin = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,19 +39,34 @@ const Adminlogin = () => {
       const response = await apiInstance.post("/admin/login", {
         email,
         password,
+      }, {
+        withCredentials: true 
       });
       console.log(response, "responseeeeeeeeeeeee");
-      if (response.data.success) {
-        toast.success("Login successful!");
-        navigate("/admin/home");
+      if (response.data.error ) {
+        setError(response.data.error || "Login failed");
+       
 
       } else {
-        setError(response.data.error || "Login failed");
+        toast.success("Login successful!");
+        navigate("/admin");
+       
       }
     } catch (error) {
+      console.log(error)
       setError(error.response?.data?.error || error.response?.data?.message || "An unexpected error occurred");
     }
   };
+
+  useEffect(()=>{
+    const token = Cookies.get('adminJwt');
+    console.log('admin login')
+    console.log(token,'token');
+    if(token){
+      navigate('/admin') 
+    }
+
+  })
 
   return (
     <>
@@ -58,7 +79,7 @@ const Adminlogin = () => {
                 Login
               </h1>
               {error && (
-                <div className="text-red-500 text-center mb-4">{error}</div>
+                <div className="text-red-500 font-bold text-sm text-center mb-4">{error}</div>
               )}
               <div className="relative">
                 <label

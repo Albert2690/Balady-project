@@ -66,6 +66,9 @@ const studentSchema = mongoose.Schema(
         type_Of_Educational_Program:{
             type:String
         },
+        license_Number:{
+            type:Number
+        }
        
         
     },
