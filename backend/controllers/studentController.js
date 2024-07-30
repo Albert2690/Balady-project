@@ -85,8 +85,8 @@ const createStudent = async (req, res) => {
 
 const editStudent = async (req, res) => {
   try {
-
     const {
+      id,
       name,
       municipal,
       id_Number,
@@ -107,49 +107,47 @@ const editStudent = async (req, res) => {
 
     const image = req.body.image;
 
+    const updatedStudent = await StudentModel.findOneAndUpdate(
+      { _id:id }, 
+      {
+        studentName: name,
+        municipal: municipal,
+        honesty: honesty,
+        sex: sex,
+        health_Certificate_Number: Number(health_Certificate_Number),
+        date_Of_issue_Of_Health_Certificate_AD: new Date(date_Of_issue_Of_Health_Certificate_AD),
+        health_Certificate_Issue_Date_Hijri: new Date(health_Certificate_Issue_Date_Hijri),
+        health_Certificate_ExpiryDate_Gregorian: new Date(health_Certificate_ExpiryDate_Gregorian),
+        health_Certificate_ExpiryDate_Hijri: new Date(health_Certificate_ExpiryDate_Hijri),
+        occupation: occupation,
+        image: image,
+        nationality: nationality,
+        Educational_Program_End_Date: Educational_Program_End_Date,
+        facility_Number: facility_Number,
+        facility_Name: facility_Name,
+        type_Of_Educational_Program: type_Of_Educational_Program,
+      },
+      { new: true } 
+    );
 
-    let updatedStudent = await StudentModel.findAndUpdateOne({
-      studentName: name,
-      municipal: municipal,
-      id_Number: id_Number,
-      honesty: honesty,
-      sex: sex,
-      health_Certificate_Number: Number(health_Certificate_Number),
-      date_Of_issue_Of_Health_Certificate_AD: new Date(
-        date_Of_issue_Of_Health_Certificate_AD
-      ),
-      health_Certificate_Issue_Date_Hijri: new Date(
-        health_Certificate_Issue_Date_Hijri
-      ),
-      health_Certificate_ExpiryDate_Gregorian: new Date(
-        health_Certificate_ExpiryDate_Gregorian
-      ),
-      health_Certificate_ExpiryDate_Hijri: new Date(
-        health_Certificate_ExpiryDate_Hijri
-      ),
-      occupation: occupation,
-      image: image,
-      nationality: nationality,
-      Educational_Program_End_Date: Educational_Program_End_Date,
-      facility_Number: facility_Number,
-      facility_Name: facility_Name,
-      type_Of_Educational_Program: type_Of_Educational_Program,
-    });
-
-    if(updatedStudent){
-     return  res.status(200).json({success:true})
+    if (updatedStudent) {
+      return res.status(200).json({ success: true, student: updatedStudent });
+    } else {
+      return res.status(404).json({ error: "Student not found" });
     }
-
-  
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+
+
 const getStudentDetials = async (req, res) => {
   try {
     const studentId = req.params;
-    const student = await StudentModel.findOne({ studentId });
+    const student = await StudentModel.findOne({ _id:studentId.id });
+
     if (student) {
       res.status(200).json({ success: true, student });
     } else {
