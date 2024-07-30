@@ -96,12 +96,23 @@ function Header() {
                   Knowledge Center
                 </a>
               </li>
+              <li>
+                <a
+                  href="#"
+                  className="block py-2 px-3 ml-9 mr-9 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                >
+                  <FaSignOutAlt className="mr-2" />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
-        <button className="flex items-center py-2 px-3 ml-9 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-          <FaSignOutAlt className="mr-2" />
-        </button>
+      
+        <img
+          src="https://balady.gov.sa/themes/custom/balady_new/logo.svg"
+          alt="Logo"
+          className="h-9 w-30 ml-8"
+        />
       </div>
     </nav>
   );
