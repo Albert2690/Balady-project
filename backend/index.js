@@ -33,7 +33,7 @@ app.use("/student", studentRouter);
 
 
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "production") {
   console.log(process.env.NODE_ENV);
   console.log("hai", new Date().toLocaleString());
   const __dirname = path.resolve();
