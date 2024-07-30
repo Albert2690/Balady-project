@@ -130,6 +130,9 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
     if (student.type_Of_Educational_Program === '') {
       newErrors.type_Of_Educational_Program = 'Type of Educational Program should not be empty';
     }
+    if (student.license_Number === '') {
+      newErrors.license_Number = 'Type of license_Number should not be empty';
+    }
 
     setError(newErrors)
     if (Object.keys(newErrors).length === 0) {
@@ -175,7 +178,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
           <div className="mb-4 md:mb-0">
             <h2 className="text-gray-600 font-semibold">STUDENTS</h2>
           </div>
-          <div className="flex flex-col md:flex-row items-center w-full md:max-w-2xl">
+          <div className="flex flex-col md:flex-row items-center w-full gap-5 md:max-w-2xl">
             <div className="flex bg-gray-50 items-center p-2 rounded-md w-full md:w-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -200,7 +203,7 @@ const [isQRCodeModal,setQRCodeModal]=useState(false)
                 onClick={toggleModal}
                 className="bg-teal-900 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
               >
-                Create
+                Create New Student
               </button>
             </div>
           </div>

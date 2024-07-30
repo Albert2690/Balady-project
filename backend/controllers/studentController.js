@@ -103,6 +103,7 @@ const editStudent = async (req, res) => {
       Educational_Program_End_Date,
       facility_Number,
       facility_Name,
+      license_Number,
       type_Of_Educational_Program,
     } = req.body.student;
 
@@ -160,4 +161,34 @@ const getStudentDetials = async (req, res) => {
   }
 };
 
-export { createStudent, editStudent, getStudentDetials };
+const getStudents = async(req,res)=>{
+  try{
+   const students = await StudentModel.find()
+   console.log(students,'students')
+    if(students){
+     res.status(200).json({success:true,students})
+    }
+   
+  }catch(err){
+    console.log(err)
+    res.status(500).json({error:"Internal Server Error"})
+  }
+}
+const editlisting = async(req,res)=>{
+  try {
+    const { id } = req.body;
+    const existingStudent = await StudentModel.findOne({ _id: id });
+    if (existingStudent) {
+      existingStudent.is_listed = !existingStudent.is_listed;
+      await existingService.save();
+      console.log("donee");
+      res.status(204).json({ message: "Updated Successfully", succes: true });
+    } else {
+      res.status(404).json({ message: "Services not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server error" });
+  }
+}
+
+export { createStudent, editStudent, getStudentDetials ,getStudents,editlisting};

@@ -68,6 +68,10 @@ const studentSchema = mongoose.Schema(
         },
         license_Number:{
             type:Number
+        },
+        is_listed:{
+            type:Boolean,
+            default:true
         }
        
         

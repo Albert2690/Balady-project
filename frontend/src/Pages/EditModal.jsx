@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { TbCodeAsterisk, TbUserCircle } from "react-icons/tb";
 import apiInstance from "../Api";
-// import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const EditModal = ({ onClose }) => {
 //   const { id } = useParams(); // Get the id from URL parameters
- const [data, setData] = useState({
+
+const[error,setError] = useState({})
+const [data, setData] = useState({
    municipal: "",
    honesty: "",
    id_Number: "",
@@ -64,7 +65,73 @@ const EditModal = ({ onClose }) => {
 
     fetchData();
   }, []);
+
+  console.log(data.nationality,'nation')
     
+  const handleSubmission = ()=>{
+    console.log(data, "while submittinh");
+    const newErrors = {}
+    if (data.name === '' ) {
+      newErrors.name = 'Student name should be more than 2 characters';
+    }
+    if (data.municipal === '') {
+      newErrors.municipal = 'Municipal should not be empty';
+    }
+    if (data.id_Number === '' || data.id_Number <= 0) {
+      newErrors.id_Number = 'Enter a valid ID number';
+    }
+    if (data.honesty === '') {
+      newErrors.honesty = 'Honesty should not be empty';
+    }
+    if (data.sex === '') {
+      newErrors.sex = 'Sex should not be empty';
+    }
+    if (data.health_Certificate_Number === '') {
+      newErrors.health_Certificate_Number = 'Health Certificate Number should not be empty';
+    }
+    if (data.date_Of_issue_Of_Health_Certificate_AD === '') {
+      newErrors.date_Of_issue_Of_Health_Certificate_AD = 'Date of Issue of Health Certificate (AD) should not be empty';
+    }
+    if (data.health_Certificate_Issue_Date_Hijri === '') {
+      newErrors.health_Certificate_Issue_Date_Hijri = 'Health Certificate Issue Date (Hijri) should not be empty';
+    }
+    if (data.health_Certificate_ExpiryDate_Gregorian === '') {
+      newErrors.health_Certificate_ExpiryDate_Gregorian = 'Health Certificate Expiry Date (Gregorian) should not be empty';
+    }
+    if (data.health_Certificate_ExpiryDate_Hijri === '') {
+      newErrors.health_Certificate_ExpiryDate_Hijri = 'Health Certificate Expiry Date (Hijri) should not be empty';
+    }
+    if (data.occupation === '') {
+      newErrors.occupation = 'Occupation should not be empty';
+    }
+    if (data.nationality === '') {
+      newErrors.nationality = 'Nationality should not be empty';
+    }
+    if (data.Educational_Program_End_Date === '') {
+      newErrors.Educational_Program_End_Date = 'Educational Program End Date should not be empty';
+    }
+    if (data.facility_Number === '') {
+      newErrors.facility_Number = 'Facility Number should not be empty';
+    }
+    if (data.facility_Name === '') {
+      newErrors.facility_Name = 'Facility Name should not be empty';
+    }
+    if (data.type_Of_Educational_Program === '') {
+      newErrors.type_Of_Educational_Program = 'Type of Educational Program should not be empty';
+    }
+    if (data.license_Number === '') {
+      console.log('licendcee')
+      newErrors.license_Number = 'Type of license_Number should not be empty';
+    }
+console.log(newErrors,'error new error')
+    setError(newErrors)
+    if (Object.keys(newErrors).length === 0) {
+      setError({})
+      handleSubmit();
+    }
+  
+  }
+  console.log(error,'error')
     
 const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,7 +145,7 @@ const handleChange = (e) => {
 
   
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    console.log('heloooooooooooooo')
     try {
       const response = await apiInstance.put(
         "/student/edit-student/66a87ad4743e6ac8ccdb295b",
@@ -170,6 +237,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.municipal &&<span className="text-red-600 font-semibold text-xs">{error.municipal}</span> }    
+
                 <label
                   htmlFor="municipal"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1 flex items-center"
@@ -190,6 +259,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.honesty &&<span className="text-red-600 font-semibold text-xs">{error.honesty}</span> }    
+
                 <label
                   htmlFor="honesty"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -208,6 +279,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.id_Number &&<span className="text-red-600 font-semibold text-xs">{error.id_Number}</span> }    
+
                 <label
                   htmlFor="idnumber"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -226,6 +299,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.studentName &&<span className="text-red-600 font-semibold text-xs">{error.studentName}</span> }    
+
                 <label
                   htmlFor="studentname"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -244,6 +319,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.nationality &&<span className="text-red-600 font-semibold text-xs">{error.nationality}</span> }    
+
                 <label
                   htmlFor="nationality"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -262,6 +339,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.sex &&<span className="text-red-600 font-semibold text-xs">{error.sex}</span> }    
+
                 <label
                   htmlFor="sex"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -280,6 +359,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.occupation &&<span className="text-red-600 font-semibold text-xs">{error.occupation}</span> }    
+
                 <label
                   htmlFor="occupation"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -298,6 +379,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.health_Certificate_Number &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Number}</span> }    
+
                 <label
                   htmlFor="certificate"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -317,6 +400,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.date_Of_issue_Of_Health_Certificate_AD &&<span className="text-red-600 font-semibold text-xs">{error.date_Of_issue_Of_Health_Certificate_AD}</span> }    
+
                 <label
                   htmlFor="issuecertificate"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -336,6 +421,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.health_Certificate_Issue_Date_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_Issue_Date_Hijri}</span> }    
+
                 <label
                   htmlFor="issuedate"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -355,6 +442,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.health_Certificate_ExpiryDate_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Hijri}</span> }    
+
                 <label
                   htmlFor="expiry"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -374,6 +463,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.health_Certificate_ExpiryDate_Hijri &&<span className="text-red-600 font-semibold text-xs">{error.health_Certificate_ExpiryDate_Hijri}</span> }    
+
                 <label
                   htmlFor="expirydate"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -387,11 +478,14 @@ const handleChange = (e) => {
                   type="date"
                   name=""
                   id="Educational_Program_End_Date"
+                  value={data?.Educational_Program_End_Date}
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                   placeholder=" "
                   onChange={handleChange}
                   required
                 />
+                {error.Educational_Program_End_Date &&<span className="text-red-600 font-semibold text-xs">{error.Educational_Program_End_Date}</span> }    
+
                 <label
                   htmlFor="edprogram"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -411,6 +505,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.type_Of_Educational_Program &&<span className="text-red-600 font-semibold text-xs">{error.type_Of_Educational_Program}</span> }    
+
                 <label
                   htmlFor="programType"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -430,6 +526,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.facility_Name &&<span className="text-red-600 font-semibold text-xs">{error.facility_Name}</span> }    
+
                 <label
                   htmlFor="facilityname"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -439,7 +537,7 @@ const handleChange = (e) => {
               </div>
               <div className="col-span-6 sm:col-span-3 relative">
                 <input
-                  type="text"
+                  type="Number"
                   name="license_Number"
                   id="license"
                   value={data?.license_Number}
@@ -448,6 +546,8 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.license_Number &&<span className="text-red-600 font-semibold text-xs">{error.license_Number}</span> }    
+
                 <label
                   htmlFor="license"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -466,6 +566,9 @@ const handleChange = (e) => {
                   onChange={handleChange}
                   required
                 />
+                {error.facility_Number &&<span className="text-red-600 font-semibold text-xs">{error.facility_Number}</span> }    
+                <span className="text-red-600 font-semibold text-xs">jkbj</span>
+
                 <label
                   htmlFor="facilitynumber"
                   className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
@@ -479,7 +582,7 @@ const handleChange = (e) => {
         <div className="p-6 border-t border-gray-200 rounded-b">
           <button
             className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-            onClick={handleSubmit}
+            onClick={handleSubmission}
           >
             Submit
           </button>
