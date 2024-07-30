@@ -6,7 +6,7 @@ import uploadImageCloudinary from "../../utils/uploadCloudinary.js";
 import DotLoader from 'react-spinners/DotLoader';
 
 
-const EditModal = ({ onClose }) => {
+const EditModal = ({ onClose,studentId,setUpdate,update }) => {
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedFile, setselectedFile] = useState("");
@@ -64,7 +64,7 @@ const EditModal = ({ onClose }) => {
       try {
         setisLoading(true)
         const response = await apiInstance.get(
-          "/student/get-student/66a87ad4743e6ac8ccdb295b"
+          `/student/get-student/${studentId}`
         );
         if (response.data) {
           const studentData = response.data.student;
@@ -209,7 +209,7 @@ const EditModal = ({ onClose }) => {
       const response = await apiInstance.put(
         "/student/edit-student",
        {student:data,
-        studentId:'66a87ad4743e6ac8ccdb295b',
+        studentId:studentId,
         image:uploadResponse.secure_url
        },
         { withCredentials: true }
@@ -220,7 +220,7 @@ const EditModal = ({ onClose }) => {
       onClose();
 
         toast.success("Student data updated successfully");
-        location.reload()
+        setUpdate(!update)
       } else {
         toast.error("Failed to update student data");
       }

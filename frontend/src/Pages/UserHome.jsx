@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import apiInstance from "../Api";
 import { TbUserCircle } from "react-icons/tb";
+import { useParams } from "react-router-dom";
 
 const UserHome = () => {
+
+  const {id} = useParams()
   const [data, setData] = useState({
     municipal: "",
     honesty: "",
@@ -32,7 +35,7 @@ const UserHome = () => {
     const fetchData = async () => {
       try {
         const response = await apiInstance.get(
-          "/student/get-student/66a87ad4743e6ac8ccdb295b"
+          `/student/get-student/${id}`
         );
         if (response.data) {
           const studentData = response.data.student;

@@ -10,11 +10,11 @@ import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
-  const [selectedQRCode, setSelectedQRCode] = useState("");
 
 const AdminHome = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedQRCode, setSelectedQRCode] = useState("");
+
   const [search,setSearch]= useState('')
   const [isQRCodeModal, setQRCodeModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,8 +23,11 @@ const AdminHome = () => {
   const [selectedFile, setselectedFile] = useState("");
   const [error, setError] = useState({});
   const [data, setData] = useState([]);
+  const [studentId,setStudentId] = useState('')
+  const [update,setUpdate] = useState(false)
 
-  const handleEditClick = (student) => {
+  const handleEditClick = (studentId) => {
+    setStudentId(studentId)
     setIsEditModalOpen(true);
   };
 
@@ -198,7 +201,7 @@ const AdminHome = () => {
     };
 
     fetchData();
-  }, []);
+  }, [update]);
 
   console.log(student, "studdd");
 
@@ -233,7 +236,7 @@ const AdminHome = () => {
   return (
     <>
       {/* component */}
-      <div className="bg-white p-4 sm:p-8 rounded-md w-full">
+      <div className="bg-white p-4 md:mt-10 sm:p-8 rounded-md w-full">
         <div className="flex flex-col md:flex-row items-start justify-between pb-6">
           <div className="mb-4 md:mb-0">
             <h2 className="text-gray-600 font-semibold">STUDENTS</h2>
@@ -270,7 +273,7 @@ const AdminHome = () => {
           </div>
         </div>
         <div>
-          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 md:mt-5 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <table className="min-w-full leading-normal">
                 <thead>
@@ -289,6 +292,15 @@ const AdminHome = () => {
                     </th>
                     <th className="px-5 py-3 border-b-2 border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
                       Nationality
+                    </th>
+                    <th className="px-5 py-3 border-b-2 border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                      Occupation
+                    </th>
+                    <th className="px-5 py-3 border-b-2 border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                    Health Certificate No
+                    </th>
+                    <th className="px-11 py-3 border-b-2  border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                      Actions 
                     </th>
                     <th className="px-5 py-3 border-b-2 border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider"></th>
                   </tr>
@@ -345,6 +357,18 @@ const AdminHome = () => {
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {" "}
+                            {student.occupation}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {" "}
+                            {student.health_Certificate_Number}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex space-x-4">
                             <MdOutlineEdit 
                               className="text-blue-600 w-6 h-6 cursor-pointer"
@@ -356,7 +380,7 @@ const AdminHome = () => {
                                 onClick={() => handleDelete(student._id)}
                               />
                             ) : (
-                              <FaEyeSlash className="text-red-500 w-6 h-6 cursor-pointer" />
+                              <FaEyeSlash onClick={() => handleDelete(student._id)} className="text-red-500 w-6 h-6 cursor-pointer" />
                             )}
                             <PiBarcode
                               onClick={() => handleQRCode(student.qr_code)}
@@ -372,7 +396,7 @@ const AdminHome = () => {
           </div>
         </div>
       </div>
-      {isEditModalOpen && <EditModal onClose={handleCloseEditModal} />}
+      {isEditModalOpen && <EditModal onClose={handleCloseEditModal} studentId={studentId} setUpdate={setUpdate} update={update} />}
       {isQRCodeModal && (
         <QRCodeModal onClose={handleCloseQRCode} qrcode={selectedQRCode} />
       )}
