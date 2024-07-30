@@ -9,31 +9,37 @@ import uploadImageCloudinary from "../../utils/uploadCloudinary.js";
 import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
+  const [selectedQRCode, setSelectedQRCode] = useState("");
+
 const AdminHome = () => {
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false); 
-const [isQRCodeModal,setQRCodeModal]=useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isQRCodeModal, setQRCodeModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const fileInputRef = useRef(null);
   const [previewUrl, setPreviewUrl] = useState("");
   const [selectedFile, setselectedFile] = useState("");
-  const[error,setError] = useState({})
-const [data, setData] = useState([]);
+  const [error, setError] = useState({});
+  const [data, setData] = useState([]);
 
-   const handleEditClick = (student) => {
-     setIsEditModalOpen(true);
-   };
+  const handleEditClick = (student) => {
+    setIsEditModalOpen(true);
+  };
 
   const handleCloseEditModal = () => {
-    setIsEditModalOpen(false)
-  }
-  const handleQRCode = () => {
-    console.log("QR Code Icon Clicked"); 
+    setIsEditModalOpen(false);
+  };
+  const handleQRCode = (qrcode) => {
+        setSelectedQRCode(qrcode);
+
     setQRCodeModal(true);
   };
-  
+
   const handleCloseQRCode = () => {
-    setQRCodeModal(false)
-  }
+        setIsQRCodeModal(false);
+
+    setQRCodeModal(false);
+  };
   const [student, setStudent] = useState({
     name: "",
     honesty: "",
@@ -69,7 +75,6 @@ const [data, setData] = useState([]);
     //     }
     // }
     const file = event.target.files[0];
-    console.log(file, "filet");
 
     if (file) {
       setselectedFile(file);
@@ -81,101 +86,105 @@ const [data, setData] = useState([]);
     fileInputRef.current.click();
   };
 
-  const handleSubmission = ()=>{
+  const handleSubmission = () => {
     console.log(student, "while submittinh");
-    const newErrors = {}
-    if (student.name === '' || student.name.length < 3) {
-      newErrors.name = 'Student name should be more than 2 characters';
+    const newErrors = {};
+    if (student.name === "" || student.name.length < 3) {
+      newErrors.name = "Student name should be more than 2 characters";
     }
-    if (student.municipal === '') {
-      newErrors.municipal = 'Municipal should not be empty';
+    if (student.municipal === "") {
+      newErrors.municipal = "Municipal should not be empty";
     }
-    if (student.id_Number === '' || student.id_Number <= 0) {
-      newErrors.id_Number = 'Enter a valid ID number';
+    if (student.id_Number === "" || student.id_Number <= 0) {
+      newErrors.id_Number = "Enter a valid ID number";
     }
-    if (student.honesty === '') {
-      newErrors.honesty = 'Honesty should not be empty';
+    if (student.honesty === "") {
+      newErrors.honesty = "Honesty should not be empty";
     }
-    if (student.sex === '') {
-      newErrors.sex = 'Sex should not be empty';
+    if (student.sex === "") {
+      newErrors.sex = "Sex should not be empty";
     }
-    if (student.health_Certificate_Number === '') {
-      newErrors.health_Certificate_Number = 'Health Certificate Number should not be empty';
+    if (student.health_Certificate_Number === "") {
+      newErrors.health_Certificate_Number =
+        "Health Certificate Number should not be empty";
     }
-    if (student.date_Of_issue_Of_Health_Certificate_AD === '') {
-      newErrors.date_Of_issue_Of_Health_Certificate_AD = 'Date of Issue of Health Certificate (AD) should not be empty';
+    if (student.date_Of_issue_Of_Health_Certificate_AD === "") {
+      newErrors.date_Of_issue_Of_Health_Certificate_AD =
+        "Date of Issue of Health Certificate (AD) should not be empty";
     }
-    if (student.health_Certificate_Issue_Date_Hijri === '') {
-      newErrors.health_Certificate_Issue_Date_Hijri = 'Health Certificate Issue Date (Hijri) should not be empty';
+    if (student.health_Certificate_Issue_Date_Hijri === "") {
+      newErrors.health_Certificate_Issue_Date_Hijri =
+        "Health Certificate Issue Date (Hijri) should not be empty";
     }
-    if (student.health_Certificate_ExpiryDate_Gregorian === '') {
-      newErrors.health_Certificate_ExpiryDate_Gregorian = 'Health Certificate Expiry Date (Gregorian) should not be empty';
+    if (student.health_Certificate_ExpiryDate_Gregorian === "") {
+      newErrors.health_Certificate_ExpiryDate_Gregorian =
+        "Health Certificate Expiry Date (Gregorian) should not be empty";
     }
-    if (student.health_Certificate_ExpiryDate_Hijri === '') {
-      newErrors.health_Certificate_ExpiryDate_Hijri = 'Health Certificate Expiry Date (Hijri) should not be empty';
+    if (student.health_Certificate_ExpiryDate_Hijri === "") {
+      newErrors.health_Certificate_ExpiryDate_Hijri =
+        "Health Certificate Expiry Date (Hijri) should not be empty";
     }
-    if (student.occupation === '') {
-      newErrors.occupation = 'Occupation should not be empty';
+    if (student.occupation === "") {
+      newErrors.occupation = "Occupation should not be empty";
     }
-    if (student.nationality === '') {
-      newErrors.nationality = 'Nationality should not be empty';
+    if (student.nationality === "") {
+      newErrors.nationality = "Nationality should not be empty";
     }
-    if (student.Educational_Program_End_Date === '') {
-      newErrors.Educational_Program_End_Date = 'Educational Program End Date should not be empty';
+    if (student.Educational_Program_End_Date === "") {
+      newErrors.Educational_Program_End_Date =
+        "Educational Program End Date should not be empty";
     }
-    if (student.facility_Number === '') {
-      newErrors.facility_Number = 'Facility Number should not be empty';
+    if (student.facility_Number === "") {
+      newErrors.facility_Number = "Facility Number should not be empty";
     }
-    if (student.facility_Name === '') {
-      newErrors.facility_Name = 'Facility Name should not be empty';
+    if (student.facility_Name === "") {
+      newErrors.facility_Name = "Facility Name should not be empty";
     }
-    if (student.type_Of_Educational_Program === '') {
-      newErrors.type_Of_Educational_Program = 'Type of Educational Program should not be empty';
+    if (student.type_Of_Educational_Program === "") {
+      newErrors.type_Of_Educational_Program =
+        "Type of Educational Program should not be empty";
     }
-    if (student.license_Number === '') {
-      newErrors.license_Number = 'Type of license_Number should not be empty';
+    if (student.license_Number === "") {
+      newErrors.license_Number = "Type of license_Number should not be empty";
     }
 
-    setError(newErrors)
+    setError(newErrors);
     if (Object.keys(newErrors).length === 0) {
-      setError({})
+      setError({});
       handleApi();
     }
-  
-  }
+  };
   const handleApi = async () => {
     try {
-   
-        const uploadResponse = await uploadImageCloudinary(selectedFile);
-  
-        const response = await apiInstance.post("student/create-student", {
+      const uploadResponse = await uploadImageCloudinary(selectedFile);
+
+      const response = await apiInstance.post(
+        "student/create-student",
+        {
           student,
           image: uploadResponse.secure_url,
-        },{
-          withCredentials:true
-        });
-  
-        console.log(response, "after api call");
-        if (response.data.success) {
-          toast.success("Student profile created successfully");
-        } else {
-          toast.error(response.data.error);
+        },
+        {
+          withCredentials: true,
         }
+      );
 
-    
-
-   
-  }catch (err) {
+      console.log(response, "after api call");
+      if (response.data.success) {
+        toast.success("Student profile created successfully");
+      } else {
+        toast.error(response.data.error);
+      }
+    } catch (err) {
       console.log(err);
       toast.error("Internal Server Error");
     }
   };
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiInstance.get("/admin/students",{withCredentials:true});
+        const response = await apiInstance.get("/admin/students");
         console.log(response.data.students, "Fetched students data");
 
         if (response.data && Array.isArray(response.data.students)) {
@@ -190,6 +199,31 @@ const [data, setData] = useState([]);
   }, []);
 
   console.log(student, "studdd");
+
+  const handleDelete = async (studentId) => {
+    try {
+      const response = await apiInstance.put(
+        "/admin/edit-listing",
+        { id: studentId },
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(response, "response from edit listing");
+      setData((prevData) =>
+        prevData.map((student) =>
+          student._id === studentId
+            ? { ...student, is_listed: !student.is_listed }
+            : student
+        )
+      );
+      toast.success(response.data.message);
+    } catch (error) {
+      console.error("Error deleting student", error);
+    }
+  };
+
   return (
     <>
       {/* component */}
@@ -259,13 +293,6 @@ const [data, setData] = useState([]);
                         {" "}
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex items-center">
-                            {/* <div className="flex-shrink-0 w-10 h-10">
-                              <img
-                                className="w-full h-full rounded-full"
-                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                alt=""
-                              />
-                            </div> */}
                             <div className="ml-3">
                               <p className="text-gray-900 whitespace-no-wrap">
                                 {idx + 1}
@@ -274,9 +301,24 @@ const [data, setData] = useState([]);
                           </div>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            {student.studentName}
-                          </p>
+                          <div className="flex items-center">
+                            <div className="flex-shrink-0 w-10 h-10">
+                              {student.image ? (
+                                <img
+                                  className="w-full h-full rounded-full"
+                                  src={student.image}
+                                  alt={student.studentName}
+                                />
+                              ) : (
+                                <TbUserCircle className="w-10 h-10 text-gray-400" />
+                              )}
+                            </div>
+                            <div className="ml-3">
+                              <p className="text-gray-900 whitespace-no-wrap">
+                                {student.studentName}
+                              </p>
+                            </div>
+                          </div>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p className="text-gray-900 whitespace-no-wrap">
@@ -301,9 +343,16 @@ const [data, setData] = useState([]);
                               className="text-blue-600 w-6 h-6 cursor-pointer"
                               onClick={handleEditClick}
                             />
-                            <RiDeleteBin6Line className="text-red-500 w-6 h-6 cursor-pointer" />
+                            {student.is_listed ? (
+                              <FaRegEye
+                                className="text-green-500 w-6 h-6 cursor-pointer"
+                                onClick={() => handleDelete(student._id)}
+                              />
+                            ) : (
+                              <FaEyeSlash className="text-red-500 w-6 h-6 cursor-pointer" />
+                            )}
                             <PiBarcode
-                              onClick={handleQRCode}
+                              onClick={() => handleQRCode(student.qr_code)}
                               className="text-black w-6 h-6 cursor-pointer"
                             />
                           </div>
@@ -317,7 +366,9 @@ const [data, setData] = useState([]);
         </div>
       </div>
       {isEditModalOpen && <EditModal onClose={handleCloseEditModal} />}
-      {isQRCodeModal && <QRCodeModal onClose={handleCloseQRCode} />}
+      {isQRCodeModal && (
+        <QRCodeModal onClose={handleCloseQRCode} qrcode={selectedQRCode} />
+      )}
       {isModalOpen && (
         <div className="fixed inset-0 mt-2 z-50 flex items-center justify-center bg-black bg-opacity-50 overflow-y-auto">
           <div className="bg-white  border-4 rounded-lg shadow relative m-4 w-full max-w-3xl h-full max-h-screen overflow-y-auto">

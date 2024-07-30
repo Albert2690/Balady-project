@@ -1,8 +1,8 @@
 import React from "react";
 import { TbUserCircle } from "react-icons/tb";
 
-function QRCodeModal({ onClose }) {
-
+function QRCodeModal({ onClose,qrcode }) {
+console.log(qrcode,'qrcode');
   const handlePrint = () => {
     window.print();
   };
