@@ -4,6 +4,7 @@ import qrcode from "qrcode";
 
 const createStudent = async (req, res) => {
   try {
+    console.log(req.body, "body");
 
     const {
       name,
@@ -163,6 +164,7 @@ const getStudentDetials = async (req, res) => {
 const getStudents = async(req,res)=>{
   try{
    const students = await StudentModel.find()
+   console.log(students,'students')
     if(students){
      res.status(200).json({success:true,students})
     }
@@ -172,20 +174,15 @@ const getStudents = async(req,res)=>{
     res.status(500).json({error:"Internal Server Error"})
   }
 }
-const editlisting = async (req, res) => {
-  console.log('hiigsd');
+const editlisting = async(req,res)=>{
   try {
-    console.log('kk');
     const { id } = req.body;
-    console.log(id);
     const existingStudent = await StudentModel.findOne({ _id: id });
-    console.log(existingStudent,'uuu');
     if (existingStudent) {
       existingStudent.is_listed = !existingStudent.is_listed;
-      console.log(existingStudent.is_listed,'islisted');
-      await existingStudent.save();
+      await existingService.save();
       console.log("donee");
-      res.status(200).json({ message: "Updated Successfully", succes: true });
+      res.status(204).json({ message: "Updated Successfully", succes: true });
     } else {
       res.status(404).json({ message: "Services not found" });
     }
