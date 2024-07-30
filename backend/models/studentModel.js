@@ -8,7 +8,7 @@ const studentSchema = mongoose.Schema(
         },
         age: {
             type: Number
-        },
+        }, 
         municipal: {
             type: String
         },

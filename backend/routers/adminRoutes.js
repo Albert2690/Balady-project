@@ -14,10 +14,10 @@ adminRouter.put('/edit-listing',authenticateAdmin,editlisting)
 
 
 
-adminRouter.get('/login',(req,res)=>{
-    console.log('request reaching')
-    res.send('Succefull login api')
-})
+// adminRouter.get('/login',(req,res)=>{
+//     console.log('request reaching')
+//     res.send('Succefull login api')
+// })
 
 
 export default adminRouter
