@@ -10,9 +10,12 @@ const generateToken = (res, adminId) => {
   res.cookie("adminJwt", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
-    samesite:'strict',
-  maxAge: 40 * 24 * 60 * 60 * 1000, 
+    sameSite: 'strict',
+    maxAge: 40 * 24 * 60 * 60 * 1000, 
+    domain: process.env.CLIENT_URL || 'http://www.balady.org.in',
+    path: '/',
   });
+  
 
   console.log(token,'token')
   return token;
