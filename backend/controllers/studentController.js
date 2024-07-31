@@ -62,7 +62,6 @@ const createStudent = async (req, res) => {
     await student.save();
 
     
-    console.log(redirectUrl,'urllllll of user scanig')
 
     const generateAndUploadQrCode = async (data) => {
       try {
@@ -78,7 +77,7 @@ const createStudent = async (req, res) => {
       }
     };
 
-    const qrData = JSON.stringify(`${process.env.CLIENT_URL}user/${student._id}`);
+    const qrData = `${process.env.CLIENT_URL}user/${student._id}`;
     const qrCodeImageUrl = await generateAndUploadQrCode(qrData);
     console.log(qrCodeImageUrl,'qrcodeedata')
 
