@@ -9,6 +9,7 @@ import uploadImageCloudinary from "../../utils/uploadCloudinary.js";
 import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
+import Pagination from "../Components/Pagination/Pagination.jsx";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 
 const AdminHome = () => {
@@ -25,6 +26,9 @@ const AdminHome = () => {
   const [data, setData] = useState([]);
   const [studentId,setStudentId] = useState('')
   const [update,setUpdate] = useState(false)
+  const [postPerPage, setPostPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  
 
   const handleEditClick = (studentId) => {
     setStudentId(studentId)
@@ -392,6 +396,12 @@ const AdminHome = () => {
                     ))}
                 </tbody>
               </table>
+              <Pagination
+            totalPosts={filteredStudents.length}
+            postPerPage={postPerPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
             </div>
           </div>
         </div>
