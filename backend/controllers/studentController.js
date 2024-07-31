@@ -1,6 +1,10 @@
 import StudentModel from "../models/studentModel.js";
 import cloudinary from "../utils/cloudinary.js";
 import qrcode from "qrcode";
+dotenv.config();
+
+
+
 
 const createStudent = async (req, res) => {
   try {
@@ -55,7 +59,8 @@ const createStudent = async (req, res) => {
 
     await student.save();
 
-    const redirectUrl = `http://localhost:7007/student/${student._id}`;
+    const redirectUrl = `${process.env.CLIENT_URL}${student._id}`;
+    console.log(redirectUrl)
 
     const generateAndUploadQrCode = async (data) => {
       try {

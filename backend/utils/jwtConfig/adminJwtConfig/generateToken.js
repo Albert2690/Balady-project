@@ -11,8 +11,7 @@ const generateToken = (res, adminId) => {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
     samesite:'strict',
-    
-    maxAge: 40 * 24 * 60 * 60 * 1000, 
+  maxAge: 40 * 24 * 60 * 60 * 1000, 
   });
 
   console.log(token,'token')
