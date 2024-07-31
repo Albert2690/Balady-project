@@ -1,6 +1,8 @@
 import StudentModel from "../models/studentModel.js";
 import cloudinary from "../utils/cloudinary.js";
 import qrcode from "qrcode";
+import dotenv from "dotenv";
+
 dotenv.config();
 
 
