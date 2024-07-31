@@ -8,12 +8,10 @@ const generateToken = (res, adminId) => {
   });
 
   res.cookie("adminJwt", token, {
-    httpOnly: true,
+    httpOnly: false,
     secure: false, // Set to false for HTTP
     sameSite: 'strict', // 'strict' or 'lax' based on your needs
     maxAge: 40 * 24 * 60 * 60 * 1000,
-    domain: 'balady.org.in', // Ensure this matches your domain without protocol
-    path: '/', 
   });
   
 
