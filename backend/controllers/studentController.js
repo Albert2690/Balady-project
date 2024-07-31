@@ -61,8 +61,8 @@ const createStudent = async (req, res) => {
 
     await student.save();
 
-    const redirectUrl = `${process.env.CLIENT_URL}${student._id}`;
-    console.log(redirectUrl)
+    const redirectUrl = `${process.env.CLIENT_URL}user/${student._id}`;
+    console.log(redirectUrl,'urllllll of user scanig')
 
     const generateAndUploadQrCode = async (data) => {
       try {

@@ -9,7 +9,7 @@ function Error404admin() {
                 <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-teal-900 dark:text-teal-900">404</h1>
                 <p className="mb-4 text-3xl tracking-tight font-bold text-teal-900 md:text-4xl dark:text-white">Something's missing.</p>
                 <p className="mb-4 text-lg  font-semibold text-teal-900 dark:text-teal-900">Sorry, we can't find that page. You'll find lots to explore on the home page. </p>
-               <Link to={'/'} ><span className="inline-flex text-white bg-teal-900 hover:bg-teal-900 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-teal-900 my-4">Back to Homepage</span></Link> 
+               <Link to={'/admin'} ><span className="inline-flex text-white bg-teal-900 hover:bg-teal-900 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-teal-900 my-4">Back to Homepage</span></Link> 
             </div>   
         </div>
     </section>

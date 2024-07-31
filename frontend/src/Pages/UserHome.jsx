@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 const UserHome = () => {
 
   const {id} = useParams()
+  console.log(id,'while sdcanning')
   const [data, setData] = useState({
     municipal: "",
     honesty: "",
