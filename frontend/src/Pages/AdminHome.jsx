@@ -9,14 +9,13 @@ import uploadImageCloudinary from "../../utils/uploadCloudinary.js";
 import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
-import Pagination from "../Components/Pagination/Pagination.jsx";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 
 const AdminHome = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedQRCode, setSelectedQRCode] = useState("");
 
-  const [search,setSearch]= useState('')
+  const [search, setSearch] = useState("");
   const [isQRCodeModal, setQRCodeModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const fileInputRef = useRef(null);
@@ -24,14 +23,11 @@ const AdminHome = () => {
   const [selectedFile, setselectedFile] = useState("");
   const [error, setError] = useState({});
   const [data, setData] = useState([]);
-  const [studentId,setStudentId] = useState('')
-  const [update,setUpdate] = useState(false)
-  const [postPerPage, setPostPerPage] = useState(5);
-  const [currentPage, setCurrentPage] = useState(1);
-  
+  const [studentId, setStudentId] = useState("");
+  const [update, setUpdate] = useState(false);
 
   const handleEditClick = (studentId) => {
-    setStudentId(studentId)
+    setStudentId(studentId);
     setIsEditModalOpen(true);
   };
 
@@ -39,14 +35,12 @@ const AdminHome = () => {
     setIsEditModalOpen(false);
   };
   const handleQRCode = (qrcode) => {
-        setSelectedQRCode(qrcode);
+    setSelectedQRCode(qrcode);
 
     setQRCodeModal(true);
   };
 
   const handleCloseQRCode = () => {
-       
-
     setQRCodeModal(false);
   };
   const [student, setStudent] = useState({
@@ -193,7 +187,9 @@ const AdminHome = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiInstance.get("/admin/students",{withCredentials:true});
+        const response = await apiInstance.get("/admin/students", {
+          withCredentials: true,
+        });
         console.log(response.data.students, "Fetched students data");
 
         if (response.data && Array.isArray(response.data.students)) {
@@ -232,9 +228,8 @@ const AdminHome = () => {
       console.error("Error deleting student", error);
     }
   };
-  let filteredStudents = data.filter(
-    (user) =>
-      user.studentName.toLowerCase().includes(search.toLowerCase()) 
+  let filteredStudents = data.filter((user) =>
+    user.studentName.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -262,7 +257,7 @@ const AdminHome = () => {
               <input
                 className="bg-gray-50 outline-none ml-1 block w-full"
                 type="text"
-                onChange={(e)=>setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="search..."
               />
             </div>
@@ -301,10 +296,10 @@ const AdminHome = () => {
                       Occupation
                     </th>
                     <th className="px-5 py-3 border-b-2 border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
-                    Health Certificate No
+                      Health Certificate No
                     </th>
                     <th className="px-11 py-3 border-b-2  border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider">
-                      Actions 
+                      Actions
                     </th>
                     <th className="px-5 py-3 border-b-2 border-white bg-teal-900 text-left text-xs font-semibold text-white uppercase tracking-wider"></th>
                   </tr>
@@ -374,9 +369,9 @@ const AdminHome = () => {
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex space-x-4">
-                            <MdOutlineEdit 
+                            <MdOutlineEdit
                               className="text-blue-600 w-6 h-6 cursor-pointer"
-                              onClick={()=>handleEditClick(student._id)}
+                              onClick={() => handleEditClick(student._id)}
                             />
                             {student.is_listed ? (
                               <FaRegEye
@@ -384,7 +379,10 @@ const AdminHome = () => {
                                 onClick={() => handleDelete(student._id)}
                               />
                             ) : (
-                              <FaEyeSlash onClick={() => handleDelete(student._id)} className="text-red-500 w-6 h-6 cursor-pointer" />
+                              <FaEyeSlash
+                                onClick={() => handleDelete(student._id)}
+                                className="text-red-500 w-6 h-6 cursor-pointer"
+                              />
                             )}
                             <PiBarcode
                               onClick={() => handleQRCode(student.qr_code)}
@@ -396,17 +394,18 @@ const AdminHome = () => {
                     ))}
                 </tbody>
               </table>
-              <Pagination
-            totalPosts={filteredStudents.length}
-            postPerPage={postPerPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
             </div>
           </div>
         </div>
       </div>
-      {isEditModalOpen && <EditModal onClose={handleCloseEditModal} studentId={studentId} setUpdate={setUpdate} update={update} />}
+      {isEditModalOpen && (
+        <EditModal
+          onClose={handleCloseEditModal}
+          studentId={studentId}
+          setUpdate={setUpdate}
+          update={update}
+        />
+      )}
       {isQRCodeModal && (
         <QRCodeModal onClose={handleCloseQRCode} qrcode={selectedQRCode} />
       )}
@@ -507,8 +506,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="honesty"
+                      id="honesty"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -525,7 +524,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="honesty"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Honesty <span className="text-red-500 ml-1">*</span>
@@ -534,8 +533,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="Number"
-                      name="municipal"
-                      id="municipal"
+                      name="id_Number"
+                      id="id_Number"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -552,7 +551,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="id_Number"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       ID_Number <span className="text-red-500 ml-1">*</span>
@@ -561,8 +560,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="name"
+                      id="name"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -579,7 +578,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="name"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Name <span className="text-red-500 ml-1">*</span>
@@ -588,8 +587,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="nationality"
+                      id="nationality"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -606,7 +605,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="nationality"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Nationality <span className="text-red-500 ml-1">*</span>
@@ -615,8 +614,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="sex"
+                      id="sex"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -633,7 +632,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="sex"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Sex <span className="text-red-500 ml-1">*</span>
@@ -642,8 +641,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="occupation"
+                      id="occupation"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -660,7 +659,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="occupation"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Occupation <span className="text-red-500 ml-1">*</span>
@@ -669,8 +668,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="Number"
-                      name="municipal"
-                      id="municipal"
+                      name="health_Certificate_Number"
+                      id="health_Certificate_Number"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -687,7 +686,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="health_Certificate_Number"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Health Certificate Number{" "}
@@ -697,8 +696,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="date"
-                      name="municipal"
-                      id="municipal"
+                      name="date_Of_issue_Of_Health_Certificate_AD"
+                      id="date_Of_issue_Of_Health_Certificate_AD"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -716,7 +715,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="date_Of_issue_Of_Health_Certificate_AD"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Date Of Issue Of Health Certificate AD{" "}
@@ -726,8 +725,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="date"
-                      name="municipal"
-                      id="municipal"
+                      name="health_Certificate_Issue_Date_Hijri"
+                      id="health_Certificate_Issue_Date_Hijri"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -744,7 +743,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="health_Certificate_Issue_Date_Hijri"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Health Certificate Issue Date Hijiri{" "}
@@ -754,8 +753,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="date"
-                      name="municipal"
-                      id="municipal"
+                      name="health_Certificate_ExpiryDate_Gregorian"
+                      id="health_Certificate_ExpiryDate_Gregorian"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -773,7 +772,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="health_Certificate_ExpiryDate_Gregorian"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Health Certificate Expiry Date Gregorian{" "}
@@ -783,8 +782,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="date"
-                      name="municipal"
-                      id="municipal"
+                      name="health_Certificate_ExpiryDate_Hijri"
+                      id="health_Certificate_ExpiryDate_Hijri"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -801,7 +800,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="health_Certificate_ExpiryDate_Hijri"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Health Certificate Expiry Date Hijiri{" "}
@@ -811,8 +810,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="date"
-                      name="municipal"
-                      id="municipal"
+                      name="Educational_Program_End_Date"
+                      id="Educational_Program_End_Date"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -829,7 +828,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="Educational_Program_End_Date"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Educational Program End Date{" "}
@@ -839,8 +838,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="type_Of_Educational_Program"
+                      id="type_Of_Educational_Program"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -857,7 +856,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="type_Of_Educational_Program"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Type Of Educational Program{" "}
@@ -867,8 +866,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="facility_Name"
+                      id="facility_Name"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -885,7 +884,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="facility_Name"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       Facility Name <span className="text-red-500 ml-1">*</span>
@@ -894,8 +893,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
-                      name="municipal"
-                      id="municipal"
+                      name="license_Number"
+                      id="license_Number"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -912,7 +911,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="license_Number"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       License Number{" "}
@@ -921,8 +920,8 @@ const AdminHome = () => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="Number"
-                      name="municipal"
-                      id="municipal"
+                      name="facility_Number"
+                      id="facility_Number"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={(e) =>
@@ -939,7 +938,7 @@ const AdminHome = () => {
                       </span>
                     )}
                     <label
-                      htmlFor="municipal"
+                      htmlFor="facility_Number"
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       No.Facility Number{" "}
