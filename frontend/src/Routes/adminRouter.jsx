@@ -12,7 +12,7 @@ function adminRouter() {
 
         <Route path="/admin/login" element={<AdminLogin />} />
 
-        <Route path='' element={<ProtectedRoutes/>}>
+        <Route  element={<ProtectedRoutes/>}>
         <Route path="/admin" element={<AdminHome />} />
         <Route path="/" element={<AdminHome />} />
         <Route path="*" element={<Error404admin />} />
