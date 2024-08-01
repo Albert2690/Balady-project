@@ -35,7 +35,7 @@ const createStudent = async (req, res) => {
 
     const existingStudent = await StudentModel.findOne({ id_Number });
     if (existingStudent) {
-      return res.status(409).json({ error: "User already exists" });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     const student = new StudentModel({

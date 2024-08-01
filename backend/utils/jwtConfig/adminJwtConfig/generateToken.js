@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const generateToken = (res, adminId) => {
@@ -7,15 +8,16 @@ const generateToken = (res, adminId) => {
     expiresIn: "40d",
   });
 
+  const isProduction = process.env.NODE_ENV === 'production';
+
   res.cookie("adminJwt", token, {
-    httpOnly: false,
-    secure: false, // Set to false for HTTP
-    sameSite: 'strict', // 'strict' or 'lax' based on your needs
+    httpOnly: true, 
+    secure: isProduction,
+    sameSite: 'strict', 
     maxAge: 40 * 24 * 60 * 60 * 1000,
   });
-  
 
-  console.log(token,'token')
+  console.log(token, 'token');
   return token;
 };
 
