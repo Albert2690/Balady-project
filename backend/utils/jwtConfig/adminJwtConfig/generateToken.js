@@ -11,7 +11,7 @@ const generateToken = (res, adminId) => {
   const isProduction = process.env.NODE_ENV === 'production';
 
   res.cookie("adminJwt", token, {
-    httpOnly: true, 
+    httpOnly: false, 
     secure: isProduction,
     sameSite: 'strict', 
     maxAge: 40 * 24 * 60 * 60 * 1000,
