@@ -17,12 +17,12 @@ const Footer = () => {
             <p className="max-w-md mx-auto mt-4 text-gray-500 dark:text-gray-400">
               Ministry of Municipal and Rural Affairs and Housing 2023 ©{" "}
             </p>
-            <div className="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center">
-              <ul className="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center space-y-2 sm:space-y-0 sm:space-x-4">
+            <div className="flex flex-col w-full mt-4 sm:flex-row items-center sm:justify-between">
+              <ul className="flex flex-row mt-4 w-full items-center justify-center space-y-2 sm:space-y-0 sm:space-x-5">
                 <li>
                   <a
                     href="#"
-                    className="text-sm tracking-wide text-blue-600 capitalize transition-colors duration-300 transform  rounded-md px-2 py-2 dark:border-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    className="text-xs md:text-sm tracking-wide text-blue-600 capitalize transition-colors duration-300 transform  rounded-md px-2 py-2 dark:border-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     Site Map
                   </a>
@@ -30,7 +30,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-sm tracking-wide text-blue-600 capitalize transition-colors duration-300 transform  rounded-md px-2 py-2 dark:border-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    className="text-xs md:text-sm tracking-wide text-blue-600 capitalize transition-colors duration-300 transform  rounded-md px-2 py-2 dark:border-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     Terms of Use
                   </a>
@@ -38,7 +38,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-sm tracking-wide text-blue-600 capitalize transition-colors duration-300 transform rounded-md px-2 py-2 dark:border-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    className="text-xs md:text-sm tracking-wide text-blue-600 capitalize transition-colors duration-300 transform rounded-md px-2 py-2 dark:border-gray-400 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                   >
                     Call Us
                   </a>

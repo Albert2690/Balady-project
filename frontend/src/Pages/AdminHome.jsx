@@ -82,7 +82,7 @@ const AdminHome = () => {
     if (file) {
       setselectedFile(file);
       setPreviewUrl(URL.createObjectURL(file));
-    }
+    } 
   };
 
   const handleButtonClick = () => {
@@ -150,7 +150,9 @@ const AdminHome = () => {
     if (student.license_Number === "") {
       newErrors.license_Number = "Type of license_Number should not be empty";
     }
-
+ if (!selectedFile) {
+   newErrors.profilePhoto = "Profile photo should not be empty";
+ }
     setError(newErrors);
     if (Object.keys(newErrors).length === 0) {
       setError({});
@@ -158,9 +160,10 @@ const AdminHome = () => {
     }
   };
   const handleApi = async () => {
+    console.log('handleapiii');
     try {
       const uploadResponse = await uploadImageCloudinary(selectedFile);
-
+console.log(uploadResponse.secure_url,'url');
       const response = await apiInstance.post(
         "student/create-student",
         {
@@ -172,15 +175,15 @@ const AdminHome = () => {
         }
       );
 
-      console.log(response, "after api call");
+      console.log(response,"after api call");
       if (response.data.success) {
         toast.success("Student profile created successfully");
       } else {
         toast.error(response.data.error);
       }
     } catch (err) {
-      console.log(err);
-      toast.error("Internal Server Error");
+      console.log(err.response.data.message);
+      toast.error(err.response.data.message);
     }
   };
 
@@ -450,11 +453,16 @@ const AdminHome = () => {
                     onChange={handleFileChange}
                   />
                 </div>
+                {error.profilePhoto && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    {error.profilePhoto}
+                  </span>
+                )}
               </div>
 
               <button
                 type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                className="text-gray-400  bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 onClick={toggleModal}
               >
                 <svg
@@ -612,12 +620,10 @@ const AdminHome = () => {
                     </label>
                   </div>
                   <div className="col-span-6 sm:col-span-3 relative">
-                    <input
-                      type="text"
+                    <select
                       name="sex"
                       id="sex"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                      placeholder=" "
                       onChange={(e) =>
                         setStudent((state) => ({
                           ...state,
@@ -625,7 +631,14 @@ const AdminHome = () => {
                         }))
                       }
                       required
-                    />
+                    >
+                      <option value="" disabled selected>
+                        Select your sex
+                      </option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
                     {error.sex && (
                       <span className="text-red-600 font-semibold text-xs">
                         {error.sex}
@@ -638,6 +651,7 @@ const AdminHome = () => {
                       Sex <span className="text-red-500 ml-1">*</span>
                     </label>
                   </div>
+
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="text"
@@ -915,6 +929,9 @@ const AdminHome = () => {
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       License Number{" "}
+                      <span className="text-red-600 font-semibold text-xs">
+                        *
+                      </span>
                     </label>
                   </div>
                   <div className="col-span-6 sm:col-span-3 relative">
@@ -942,6 +959,9 @@ const AdminHome = () => {
                       className="absolute text-sm font-medium text-gray-900 -top-2.5 left-2.5 bg-white px-1"
                     >
                       No.Facility Number{" "}
+                      <span className="text-red-600 font-semibold text-xs">
+                        *
+                      </span>
                     </label>
                   </div>
                 </div>
