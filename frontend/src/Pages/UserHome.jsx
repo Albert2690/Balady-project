@@ -3,7 +3,7 @@ import apiInstance from "../Api";
 import { TbUserCircle } from "react-icons/tb";
 import { useParams } from "react-router-dom";
 import logo from '../assets/albert.jpg'
-import Loader from '../Components/Loder.jsx'
+import Loader from '../Components/Loder/Loader.jsx'
 
 
 const UserHome = () => {
