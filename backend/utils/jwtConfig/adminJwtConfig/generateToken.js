@@ -7,14 +7,20 @@ const generateToken = (res, adminId) => {
     expiresIn: "40d",
   });
 
-  res.cookie("adminJwt", token, {
+  const cookieOptions = {
     httpOnly: false,
-    secure: false, // Set to false for HTTP
+    secure: false, // Set to true if using HTTPS
     sameSite: 'strict', // 'strict' or 'lax' based on your needs
-    maxAge: 40 * 24 * 60 * 60 * 1000,
-    domain: 'balady.org.in', // Ensure this matches your domain without protocol
+    maxAge: 40 * 24 * 60 * 60 * 1000, // 40 days
     path: '/', // Global path
-  });
+  };
+
+  // if (process.env.NODE_ENV === 'production') {
+  //   cookieOptions.secure = true; // Ensure the cookie is only sent over HTTPS
+  //   cookieOptions.domain = '.balady.org.in'; // Set the cookie for the entire domain
+  // }
+
+  res.cookie("adminJwt", token, cookieOptions);
 
   console.log(token, 'token');
   return token;
