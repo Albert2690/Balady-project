@@ -79,6 +79,10 @@ const UserHome = () => {
             image:studentData.image || "",
           });
         }
+          setTimeout(()=>{
+    setisLoading(false)
+
+  },1000)
        
       } catch (error) {
         console.error(
@@ -91,10 +95,7 @@ const UserHome = () => {
     fetchData();
   }, []);
 
-  // setTimeout(()=>{
-  //   setisLoading(false)
 
-  // },1000)
 
   return (
     <>
