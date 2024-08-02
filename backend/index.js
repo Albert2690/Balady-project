@@ -20,7 +20,8 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'http://www.balady.org.in',
+  origin: process.env.CLIENT_URL || 'http://www.balady.org.in','http://timezy.site'
+,
   methods: "GET,POST,PUT,DELETE,OPTIONS",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true 
