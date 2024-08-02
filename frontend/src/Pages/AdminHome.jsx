@@ -177,7 +177,11 @@ console.log(uploadResponse.secure_url,'url');
 
       console.log(response,"after api call");
       if (response.data.success) {
+         setIsModalOpen(false);
         toast.success("Student profile created successfully");
+        setTimeout(() => {
+    location.reload();
+  }, 1000);
       } else {
         toast.error(response.data.error);
       }
