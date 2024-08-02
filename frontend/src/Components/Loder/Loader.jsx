@@ -3,7 +3,7 @@ import React from 'react';
 import './Loader.css'; 
 import logo from '../../assets/logo-balady.png'
 import BounceLoader from 'react-spinners/BounceLoader';
-import logo1 from '../../assets/logo1.jpeg'
+import logo1 from '../../assets/loader-logo.png'
 
 
 
@@ -19,7 +19,7 @@ const Loader = () => {
 />
 
         </div>
-      <img src={logo} alt="Loading..." className="loader-image w-[55px] h-[25px] absolute top-50 left-50" />
+      <img src={logo1} alt="Loading..." className="loader-image w-[200px] h-[200px] absolute top-50 left-50" />
     </div>
   );
 };

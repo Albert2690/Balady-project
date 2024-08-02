@@ -910,7 +910,7 @@ console.log(uploadResponse.secure_url,'url');
                   </div>
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
-                      type="text"
+                      type="Number"
                       name="license_Number"
                       id="license_Number"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import Cookie from "js-cookie";
 import "./Header.css"; // Import the CSS file for additional styling
+import logo from  '../../assets/logo-3.jpeg'
+
+
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,7 +35,7 @@ function Header() {
   };
 
   return (
-    <nav className="bg-teal-900 border-gray-200 dark:bg-teal-700">
+    <nav className=" border-gray-200 header">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center mx-3 justify-between w-full lg:w-auto">
         <button
@@ -70,9 +73,10 @@ function Header() {
             </svg> */}
           </button>
           <img
-            src="https://balady.gov.sa/themes/custom/balady_new/logo.svg"
+            // src="https://balady.gov.sa/themes/custom/balady_new/logo.svg"
+            src={logo}
             alt="Logo"
-            className="h-9 w-30 lg:ml-8"
+            className="h-16 w-30 lg:ml-8"
           />
       
         </div>
