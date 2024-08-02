@@ -112,12 +112,12 @@ const UserHome = () => {
       <h1 className="text-[30px] max-w-[250px] md:max-w-[400px] text-center text-gray-700 font-bold">شهادة صحية سنوية</h1>
     </div>
     <div className="p-4 sm:p-6 md:p-8 space-y-6">
-      <div className="flex flex-col items-end">
+      <div className="flex flex-col items-center">
         {data ? (
           <img
             src={data?.image}
             alt="Student Image"
-            className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 "
+            className="h-[100px] w-[100px] sm:h-28 sm:w-28 md:h-32 md:w-32 "
           />
         ) : (
           <TbUserCircle
