@@ -1,0 +1,50 @@
+/* Adjust flex-grow styles for different screen sizes */
+.body{
+    margin: 0;
+  }
+  @media (min-width: 1024px) {
+    .flex-grow img {
+        order: 1;
+    }
+  
+    .flex-grow ul {
+        order: 2;
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+    }
+  }
+  
+  @media (max-width: 1023px) {
+    .flex-grow {
+        justify-content: flex-end !important;
+    }
+  
+    .flex-grow img {
+        margin-left: auto;
+        margin-right: 0;
+    }
+  
+    .flex-grow ul {
+        margin-left: auto;
+        margin-right: 0;
+    }
+  }
+  
+  .header {
+    background-color: #07706C;
+    
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+  }
+  
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+  }
+  
+  

@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const AdminHome = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -25,6 +26,7 @@ const AdminHome = () => {
   const [data, setData] = useState([]);
   const [studentId, setStudentId] = useState("");
   const [update, setUpdate] = useState(false);
+  const [deleted,setDeleted] = useState(false)
 
   const handleEditClick = (studentId) => {
     setStudentId(studentId);
@@ -208,7 +210,7 @@ console.log(uploadResponse.secure_url,'url');
     };
 
     fetchData();
-  }, [update]);
+  }, [update,deleted]);
 
   console.log(student, "studdd");
 
@@ -235,6 +237,30 @@ console.log(uploadResponse.secure_url,'url');
       console.error("Error deleting student", error);
     }
   };
+
+  const handleDeleteStudent = async (studentId) => {
+    console.log(studentId,'st')
+    try {
+      const response = await apiInstance.delete(
+        "/admin/delete-student",
+        {
+          data: { id: studentId }, 
+          withCredentials: true,
+        }
+      );
+
+   
+      if(response.success){
+      console.log(response, "response from delte listing");
+
+        setDeleted(!deleted)
+        toast.success(response.data.message);
+
+      }
+    } catch (error) {
+      console.error("Error deleting student", error);
+    }
+  };
   let filteredStudents = data.filter((user) =>
     user.studentName.toLowerCase().includes(search.toLowerCase())
   );
@@ -242,6 +268,7 @@ console.log(uploadResponse.secure_url,'url');
   return (
     <>
       {/* component */}
+      <div className="bg-white flex flex-col min-h-screen pt-[85px] md:pt-16  lg:px-8">
       <div className="bg-white p-4 md:mt-10 sm:p-8 rounded-md w-full">
         <div className="flex flex-col md:flex-row items-start justify-between pb-6">
           <div className="mb-4 md:mb-0">
@@ -391,6 +418,10 @@ console.log(uploadResponse.secure_url,'url');
                                 className="text-red-500 w-6 h-6 cursor-pointer"
                               />
                             )}
+                             <RiDeleteBinLine
+                              onClick={() => handleDeleteStudent(student._id)}
+                              className="text-red w-6 h-6 cursor-pointer"
+                            />
                             <PiBarcode
                               onClick={() => handleQRCode(student.qr_code)}
                               className="text-black w-6 h-6 cursor-pointer"
@@ -405,6 +436,8 @@ console.log(uploadResponse.secure_url,'url');
           </div>
         </div>
       </div>
+      </div>
+
       {isEditModalOpen && (
         <EditModal
           onClose={handleCloseEditModal}
@@ -910,7 +943,7 @@ console.log(uploadResponse.secure_url,'url');
                   </div>
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
-                      type="text"
+                      type="Number"
                       name="license_Number"
                       id="license_Number"
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"

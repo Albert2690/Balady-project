@@ -8,8 +8,8 @@ const userRouter = () => {
   return (
     <div>
       <Routes>
-        <Route path="/user/:id" element={<UserHome />} />
-        <Route path="*" element={<Error404/>}/>
+        <Route path="/Eservices/HealthIssue/PrintedLicenses" element={<UserHome />} />
+        <Route path="/user/error" element={<Error404/>}/>
       </Routes>
     </div>
   );

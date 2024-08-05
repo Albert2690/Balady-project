@@ -21,15 +21,16 @@ app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
   origin: [
-    process.env.CLIENT_URL || 'http://www.balady.org.in',
-    'http://timezy.site'
+    process.env.CLIENT_URL || 'https://www.balady.org.in',
+   
   ],
-  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  // origin:'http://localhost:5173',
+  methods: "GET,POST,PUT,DELETE,OPTIONS", 
   allowedHeaders: "Content-Type,Authorization",
   credentials: true 
 };
-
-app.use(cors(corsOptions));
+ 
+app.use(cors(corsOptions));  
 
 app.use("/admin", adminRouter);
 app.use("/student", studentRouter);

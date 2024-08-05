@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import Cookie from "js-cookie";
 import "./Header.css"; // Import the CSS file for additional styling
+import logo from  '../../assets/logo-3.jpeg'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,14 +33,14 @@ function Header() {
   };
 
   return (
-    <nav className="bg-teal-900 border-gray-200 dark:bg-teal-700">
+    <nav className={`${isMenuOpen? 'header': 'header h-[80px]'} `}>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center mx-3 justify-between w-full lg:w-auto">
         <button
             data-collapse-toggle="mobile-menu-2"
             onClick={toggleMenu}
             type="button"
-            className="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
+            className="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
             aria-controls="mobile-menu-2"
             aria-expanded={isMenuOpen ? "true" : "false"}
           >
@@ -56,28 +57,16 @@ function Header() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            {/* <svg
-              className={`w-6 h-6 ${isMenuOpen ? "" : "hidden"}`}
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg> */}
           </button>
           <img
-            src="https://balady.gov.sa/themes/custom/balady_new/logo.svg"
+            src={logo}
             alt="Logo"
-            className="h-9 w-30 lg:ml-8"
+            className="h-16 w-30 lg:ml-8"
           />
       
         </div>
         <div
-          className={`w-full lg:flex lg:items-center mx-3 lg:w-auto ${
+          className={`w-full z-[1000] lg:flex lg:items-center mx-3 lg:w-auto ${
             isMenuOpen ? "block" : "hidden"
           } lg:block`}
           id="navbar-default"
@@ -132,18 +121,6 @@ function Header() {
                 تواصل معنا
               </a>
             </li>
-            {/* {isAuthenticated && (
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  onClick={handleLogout}
-                >
-                  <FaSignOutAlt className="mr-2" />
-                  تسجيل خروج
-                </a>
-              </li>
-            )} */}
           </ul>
         </div>
       </div>

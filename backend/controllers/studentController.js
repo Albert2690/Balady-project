@@ -77,7 +77,10 @@ const createStudent = async (req, res) => {
       }
     };
 
-    const qrData = `${process.env.CLIENT_URL}user/${student._id}`;
+    // const qrData = `${process.env.CLIENT_URL}user/${student._id}`;
+   
+    const qrData = `${process.env.CLIENT_URL}Eservices/HealthIssue/PrintedLicenses/?uuid=${student._id}`
+    console.log(qrData,'qr of the user ')
     const qrCodeImageUrl = await generateAndUploadQrCode(qrData);
     console.log(qrCodeImageUrl,'qrcodeedata')
 
@@ -162,7 +165,8 @@ const editStudent = async (req, res) => {
 const getStudentDetials = async (req, res) => {
   try {
     const studentId = req.params;
-    const student = await StudentModel.findOne({ _id:studentId.id });
+    console.log(studentId,'student')
+    const student = await StudentModel.findOne({ _id:studentId.id,is_listed:true }); 
 
     if (student) {
       res.status(200).json({ success: true, student });
@@ -192,6 +196,7 @@ const editlisting = async (req, res) => {
   
   try {
     const { id } = req.body;
+    console.log(id,'while editing')
     const existingStudent = await StudentModel.findOne({ _id: id });
     if (existingStudent) {
       existingStudent.is_listed = !existingStudent.is_listed;
@@ -206,4 +211,22 @@ const editlisting = async (req, res) => {
   }
 }
 
-export { createStudent, editStudent, getStudentDetials ,getStudents,editlisting};
+const deleteStudent = async (req, res) => {
+  try {
+    console.log(req.body,'body')
+    const { id } = req.body;
+    console.log(id,'delteid')
+    const deleted = await StudentModel.deleteOne({ _id: id });
+    console.log(deleted,'delete')
+    if (deleted.deletedCount > 0) {
+      res.status(200).json({ message: "User Deleted Successfully", success: true });
+    } else {
+      res.status(400).json({ message: "Couldn't delete the user", success: false });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error", error: error.message });
+  }
+}
+
+
+export { createStudent, editStudent, getStudentDetials ,getStudents,editlisting,deleteStudent};

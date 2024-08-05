@@ -7,13 +7,21 @@ import UserHeader from '../Components/Header/UserHeader.jsx';
 import UserRouter from '../Routes/userRouter.jsx'
 function layout() {
   const location = useLocation();
-  const isUserPath = location.pathname.startsWith("/user"); // Corrected method name
+  const isUserPath = location.pathname.startsWith("/Eservices"); 
   return (
     <>
-      {isUserPath ? <UserHeader /> : <Header />}
-      <main>{isUserPath ? <UserRouter /> : <AdminRouter />}</main>
-      <Footer />
+      {!isUserPath && <Header />}
+      <main >{isUserPath ? <UserRouter /> :
+    
+      <AdminRouter />
+
+    
+      
+      }</main>
+      {!isUserPath && <Footer />}
+
     </>
+   
   );
 }
 

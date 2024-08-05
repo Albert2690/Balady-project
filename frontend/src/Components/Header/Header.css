@@ -1,32 +1,42 @@
-/* src/components/Header.css */
+.header {
+  background-color: #07706C;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1000; /* Ensure this is higher than other elements */
+  top: 0;
+  left: 0;
+}
+
+body {
+  padding-top: 64px; /* Adjust this value to match the height of your header */
+}
+
 @media (min-width: 1024px) {
-    /* Styles for desktop view */
-    .flex-grow img {
-      order: 1;
-    }
-  
-    .flex-grow ul {
-      order: 2;
-      display: flex;
-      justify-content: flex-end;
-      flex-grow: 1;
-    }
+  .flex-grow img {
+    order: 1;
   }
-  
-  @media (max-width: 1023px) {
-    /* Styles for mobile view */
-    .flex-grow {
-      justify-content: flex-end !important;
-    }
-  
-    .flex-grow img {
-      margin-left: auto;
-      margin-right: 0;
-    }
-  
-    .flex-grow ul {
-      margin-left: auto;
-      margin-right: 0;
-    }
+
+  .flex-grow ul {
+    order: 2;
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
   }
-  
+}
+
+@media (max-width: 1023px) {
+  .flex-grow {
+    justify-content: flex-end !important;
+  }
+
+  .flex-grow img {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .flex-grow ul {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
