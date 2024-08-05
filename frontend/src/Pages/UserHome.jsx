@@ -88,7 +88,7 @@ const UserHome = () => {
        ;
        setTimeout(() => {
         setisLoading(false);
-      }, 10000)
+      }, 1000)
       
       } catch (error) {
         if (error.message === 'Request failed with status code 404') {
