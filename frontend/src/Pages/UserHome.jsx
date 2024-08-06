@@ -88,7 +88,7 @@ const UserHome = () => {
        ;
        setTimeout(() => {
         setisLoading(false);
-      }, 10000)
+      }, 1000)
       
       } catch (error) {
         if (error.message === 'Request failed with status code 404') {
@@ -154,7 +154,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  أمانة
+                  الامانة
                 </label>
               </div>
               <div
@@ -191,7 +191,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  الاسم
+                  الاسم 
                 </label>
               </div>
               <div
@@ -225,7 +225,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  الجنس
+                  الجنس 
                 </label>
               </div>
               <div
@@ -240,7 +240,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  جنسية
+                  الجنسية 
                 </label>
               </div>
               <div
@@ -255,7 +255,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute  font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  رقم الشهادة الصحية{" "}
+                رقم الشهادة الصحية {" "}
                 </label>
               </div>
               <div
@@ -270,7 +270,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  الْمِهْنَة  
+                  المهنة   
                 </label>
               </div>
 
@@ -286,7 +286,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  تاريخ إصدار الشهادة الصحية هجري{" "}
+                  تاريخ إصدار الشهادة الصحية ھجري{" "}
                 </label>
               </div>
               <div
@@ -301,7 +301,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  تاَرِيخُ نِّهاَدَةَ الشَّهاَدَةِ الصَّحِيَّةِ مِيلآدِي
+                تاريخ إصدار الشهادة الصحية ميلادي
                 </label>
               </div>
 
@@ -317,7 +317,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  تاريخ انتهاء الشهادة الصحية هجري{" "}
+               {" "}
                 </label>
               </div>
               <div
@@ -332,7 +332,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  تاريخ انتهاء الشهادة الصحية ميلادي{" "}
+                تاريخ انتهاء الشهادة الصحية ميلادي{" "}
                 </label>
               </div>
               <div
@@ -347,7 +347,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  نوع البرنامج التعليمي{" "}
+                   نوع البرنامج التثقيفى {" "}
                 </label>
               </div>
               <div
@@ -362,7 +362,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  تَارِيخُ انْتِهَاءِ الْبَرْنَامَجِ اَلْتَثْقِيفِي
+               تاريخ انتهاء البرنامج التثقيفى 
                 </label>
               </div>
 
@@ -378,7 +378,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  رقم الرخصة{" "}
+                رقم رخصة المنشأة {" "}
                 </label>
               </div>
               <div
@@ -393,7 +393,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                  إسم المنشأة
+                اسم المنشأة
                 </label>
               </div>
               <div
