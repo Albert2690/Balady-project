@@ -317,7 +317,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-               {" "}
+              تاريخ انتهاء الشهادة الصحية ھجري {" "}
                 </label>
               </div>
               <div
@@ -332,7 +332,7 @@ const UserHome = () => {
                   htmlFor="municipal"
                   className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
-                تاريخ انتهاء الشهادة الصحية ميلادي{" "}
+               تاريخ انتهاء الشهادة الصحية ميلادي {" "}
                 </label>
               </div>
               <div
