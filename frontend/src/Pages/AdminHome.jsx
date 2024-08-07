@@ -11,6 +11,8 @@ import EditModal from "./EditModal";
 import QRCodeModal from "./QRCodeModal";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
+import Swal from 'sweetalert2';
+
 
 const AdminHome = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -238,29 +240,40 @@ console.log(uploadResponse.secure_url,'url');
     }
   };
 
-  const handleDeleteStudent = async (studentId) => {
-    console.log(studentId,'st')
-    try {
-      const response = await apiInstance.delete(
-        "/admin/delete-student",
-        {
-          data: { id: studentId }, 
-          withCredentials: true,
+const handleDeleteStudent = async (studentId) => {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      console.log(studentId, 'st');
+      try {
+        const response = await apiInstance.delete(
+          "/admin/delete-student",
+          {
+            data: { id: studentId },
+            withCredentials: true,
+          }
+        );
+
+        if (response.data.success) {
+          console.log(response, "response from delete listing");
+          setDeleted(prevDeleted => !prevDeleted);
+          toast.success(response.data.message);
         }
-      );
-
-   
-      if(response.success){
-      console.log(response, "response from delte listing");
-
-        setDeleted(!deleted)
-        toast.success(response.data.message);
-
+      } catch (error) {
+        console.error("Error deleting student", error);
+        toast.error("Failed to delete student.");
       }
-    } catch (error) {
-      console.error("Error deleting student", error);
     }
-  };
+  });
+};
+
   let filteredStudents = data.filter((user) =>
     user.studentName.toLowerCase().includes(search.toLowerCase())
   );

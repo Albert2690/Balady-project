@@ -114,9 +114,9 @@ const UserHome = () => {
       ) : (
         <>
         <UserHeader/>
-        <div className="bg-white flex flex-col min-h-screen pt-16 z--999 lg:px-8">
+        <div className="bg-white flex flex-col min-h-screen  md:pt-16 z--999 lg:px-8">
             
-      <div className="bg-white  items-center rounded-lg  rounded-t  md:shadow-lg relative mx-4 sm:mx-6 md:mx-auto lg:mx-auto max-w-full sm:max-w-full md:max-w-lg lg:max-w-3xl mt-9  w-full h-full max-h-90 p-4 sm:p-6">
+      <div className="bg-white  items-center rounded-lg  rounded-t  md:shadow-lg relative sm:mx-0 md:mx-auto lg:mx-auto max-w-full sm:max-w-full md:max-w-lg lg:max-w-3xl mt-6 md:mt-9  w-full h-full max-h-90 p-4 sm:p-6">
       <hr className="w-full border-t-[4px] border-gray-100 shadow-sm" />
 
         <div className="flex items-center justify-center  px-4 ">

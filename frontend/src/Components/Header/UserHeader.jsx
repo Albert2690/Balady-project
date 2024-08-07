@@ -35,7 +35,7 @@ function Header() {
   return (
     <nav className={`${isMenuOpen? 'header': 'header h-[80px]'} `}>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <div className="flex items-center mx-3 justify-between w-full lg:w-auto">
+        <div className="flex items-center ml-3 justify-between w-full lg:w-auto">
         <button
             data-collapse-toggle="mobile-menu-2"
             onClick={toggleMenu}
@@ -61,7 +61,7 @@ function Header() {
           <img
             src={logo}
             alt="Logo"
-            className="h-16 w-30 lg:ml-8"
+            className="h-16 w-30 ml-2 lg:ml-8"
           />
       
         </div>

@@ -20,7 +20,7 @@ function adminRouter() {
         <Route path="/" element={<AdminHome />} />
         </Route>
 
-        <Route path="*" element={<Error404admin />} />
+        <Route path="/admin/*" element={<Error404admin />} />
 
 
 
