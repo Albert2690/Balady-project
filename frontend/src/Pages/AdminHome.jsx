@@ -685,8 +685,8 @@ const handleDeleteStudent = async (studentId) => {
                       <option value="" disabled selected>
                         Select your sex
                       </option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      <option value="male">ذكر</option>
+                      <option value="female">أنثى</option>
                       <option value="other">Other</option>
                     </select>
                     {error.sex && (
