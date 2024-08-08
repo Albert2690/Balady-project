@@ -448,8 +448,8 @@ const EditModal = ({ onClose,studentId,setUpdate,update }) => {
                       <option value="" disabled>
                         Select sex
                       </option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
+                      <option value="ذكر">ذكر</option>
+                      <option value="أنثى">أنثى</option>
                       <option value="other">Other</option>
                     </select>
                     {error.sex && (
