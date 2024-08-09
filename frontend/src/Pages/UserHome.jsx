@@ -146,7 +146,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span tabIndex={0} onClick={handleClick} className="shadow-sm text-start bg-gray-50 border border-gray-300 text-gray-900 h-[51px] sm:text-[20px] rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-3">
+                <span tabIndex={0} onClick={handleClick} className="shadow-sm text-start mt-2  bg-gray-50 border border-gray-300 text-[#3c3c3b] h-[51px] text-[13px]   rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-3">
                   {data?.honesty}{" "}
                 </span>
 
@@ -169,7 +169,7 @@ const UserHome = () => {
               placeholder=" "
               required
             /> */}
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7] border border-gray-300 text-gray-900 sm:text-[20px] rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-3">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7] border border-gray-300 text-[#3c3c3b] text-[13px] rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-3">
                   {data?.municipal}{" "}
                 </span>
                 <label
@@ -184,7 +184,7 @@ const UserHome = () => {
                 dir="rtl"
               >
                 {" "}
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm  h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px] rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-3">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm  h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px] rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-3">
                   {data?.studentName}{" "}
                 </span>
                 <label
@@ -202,7 +202,7 @@ const UserHome = () => {
                 <span
                   onClick={handleClick}
                   tabIndex={0}
-                  className="shadow-sm text-start h-[51px] bg-[#f3f6f7] border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5"
+                  className="shadow-sm text-start h-[51px] mt-2  bg-[#f3f6f7] border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5"
                 >
                   {data?.id_Number}{" "}
                 </span>
@@ -218,7 +218,7 @@ const UserHome = () => {
                 dir="rtl"
               >
                 {" "}
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.sex}{" "}
                 </span>
                 <label
@@ -233,7 +233,7 @@ const UserHome = () => {
                 dir="rtl"
               >
                 {" "}
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg ffocus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg ffocus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.nationality}{" "}
                 </span>
                 <label
@@ -247,7 +247,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.health_Certificate_Number}{" "}
                 </span>
 
@@ -263,7 +263,7 @@ const UserHome = () => {
                 dir="rtl"
               >
                 {" "}
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.occupation}{" "}
                 </span>
                 <label
@@ -278,7 +278,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm  text-start h-[51px] bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm mt-2  text-start h-[51px] bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.health_Certificate_Issue_Date_Hijri}{" "}
                 </span>
 
@@ -293,7 +293,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.date_Of_issue_Of_Health_Certificate_AD}{" "}
                 </span>
 
@@ -309,7 +309,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.health_Certificate_ExpiryDate_Hijri}{" "}
                 </span>
 
@@ -324,7 +324,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2 text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.health_Certificate_ExpiryDate_Gregorian}{" "}
                 </span>
 
@@ -339,7 +339,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.type_Of_Educational_Program}{" "}
                 </span>
 
@@ -354,7 +354,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.Educational_Program_End_Date}{" "}
                 </span>
 
@@ -370,7 +370,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.license_Number}{" "}
                 </span>
 
@@ -385,7 +385,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
+                <span  tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] mt-2  text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg focus:ring-[#07706C] focus:border-[#07706C] focus:text-[#07706C] block w-full p-2.5">
                   {data?.facility_Name}{" "}
                 </span>
 
@@ -400,7 +400,7 @@ const UserHome = () => {
                 className="col-span-6 sm:col-span-3 relative flex items-center"
                 dir="rtl"
               >
-                <span tabIndex={0} onClick={handleClick} className="shadow-sm h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-gray-900 sm:text-[20px]  rounded-lg  block w-full p-2.5">
+                <span tabIndex={0} onClick={handleClick} className="shadow-sm mt-2  h-[51px] text-start bg-[#f3f6f7]  border border-gray-300 text-[#3c3c3b] text-[13px]  rounded-lg  block w-full p-2.5">
                   {data?.facility_Number}{" "}
                 </span>
 
