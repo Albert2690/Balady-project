@@ -120,7 +120,7 @@ const UserHome = () => {
       <hr className="w-full border-t-[4px] border-gray-100 shadow-sm" />
 
         <div className="flex items-center justify-center  px-4 ">
-          <h2 className=" md:max-w-[400px] text-center font-semibold text-[2rem] text-gray-700 ">
+          <h2 className=" md:max-w-[400px] text-center font-[500] text-[2rem] text-gray-700 ">
             {" "}
             شهادة صحية سنوية
           </h2>
