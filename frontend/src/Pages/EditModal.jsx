@@ -617,7 +617,7 @@ const EditModal = ({ onClose,studentId,setUpdate,update }) => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="date"
-                      name=""
+                      name="Educational_Program_End_Date"
                       id="Educational_Program_End_Date"
                       value={data?.Educational_Program_End_Date}
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"

@@ -99,6 +99,7 @@ const createStudent = async (req, res) => {
 const editStudent = async (req, res) => {
   try {
     const  id = req.body.studentId
+
     console.log('updating',req.body.student)
     const {
      
@@ -123,6 +124,7 @@ const editStudent = async (req, res) => {
 
     const image = req.body.image;
     console.log(id,'id from updating')
+    console.log(Educational_Program_End_Date,'educational datee')
 
     const updatedStudent = await StudentModel.findOneAndUpdate(
       { _id:id }, 
