@@ -174,10 +174,15 @@ const EditModal = ({ onClose,studentId,setUpdate,update }) => {
       newErrors.type_Of_Educational_Program =
         "Type of Educational Program should not be empty";
     }
+    // if (data. health_Certificate_ExpiryDate_Gregorian === "") {
+    //   console.log("licendcee");
+    //   newErrors.license_Number = "Type of license_Number should not be empty";
+    // }
     if (data.license_Number === "") {
       console.log("licendcee");
       newErrors.license_Number = "Type of license_Number should not be empty";
     }
+   
     if (!selectedFile) {
       
       console.log('hdfsjsjsjsjsjsjsjsjsjsjsjsjsjsjsjsj');
@@ -567,17 +572,17 @@ const EditModal = ({ onClose,studentId,setUpdate,update }) => {
                   <div className="col-span-6 sm:col-span-3 relative">
                     <input
                       type="date"
-                      name="health_Certificate_ExpiryDate_Hijri"
+                      name="health_Certificate_ExpiryDate_Gregorian"
                       id="expiry"
-                      value={data?.health_Certificate_ExpiryDate_Hijri}
+                      value={data?.health_Certificate_ExpiryDate_Gregorian}
                       className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                       placeholder=" "
                       onChange={handleChange}
                       required
                     />
-                    {error.health_Certificate_ExpiryDate_Hijri && (
+                    {error.health_Certificate_ExpiryDate_Gregorian && (
                       <span className="text-red-600 font-semibold text-xs">
-                        {error.health_Certificate_ExpiryDate_Hijri}
+                        {error.health_Certificate_ExpiryDate_Gregorian}
                       </span>
                     )}
 

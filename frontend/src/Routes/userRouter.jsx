@@ -9,7 +9,7 @@ const userRouter = () => {
     <div>
       <Routes>
         <Route path="/Eservices/HealthIssue/PrintedLicenses" element={<UserHome />} />
-        <Route path="/user/error" element={<Error404/>}/>
+        <Route path="/Eservices/error" element={<Error404/>}/>
       </Routes>
     </div>
   );

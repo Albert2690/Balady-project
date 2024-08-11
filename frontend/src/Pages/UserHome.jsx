@@ -93,7 +93,7 @@ const UserHome = () => {
       } catch (error) {
         if (error.message === 'Request failed with status code 404') {
           console.log('Redirecting to not found page');
-          navigate('/user/error');
+          navigate('/Eservices/error');
         console.error("Error Fetching student data:", error);
       }
     };
@@ -152,7 +152,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   الامانة
                 </label>
@@ -174,7 +174,7 @@ const UserHome = () => {
                 </span>
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   البلدية
                 </label>
@@ -189,7 +189,7 @@ const UserHome = () => {
                 </span>
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   الاسم 
                 </label>
@@ -208,7 +208,7 @@ const UserHome = () => {
                 </span>
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   رقم الهوية
                 </label>
@@ -223,7 +223,7 @@ const UserHome = () => {
                 </span>
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   الجنس 
                 </label>
@@ -238,7 +238,7 @@ const UserHome = () => {
                 </span>
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   الجنسية 
                 </label>
@@ -253,7 +253,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute  font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute  font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                 رقم الشهادة الصحية {" "}
                 </label>
@@ -268,7 +268,7 @@ const UserHome = () => {
                 </span>
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   المهنة   
                 </label>
@@ -284,7 +284,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   تاريخ إصدار الشهادة الصحية ھجري{" "}
                 </label>
@@ -299,7 +299,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                 تاريخ إصدار الشهادة الصحية ميلادي
                 </label>
@@ -315,7 +315,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
               تاريخ انتهاء الشهادة الصحية ھجري {" "}
                 </label>
@@ -330,7 +330,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                تاريخ انتهاء الشهادة الصحية ميلادي {" "}
                 </label>
@@ -345,7 +345,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                    نوع البرنامج التثقيفى {" "}
                 </label>
@@ -360,7 +360,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                تاريخ انتهاء البرنامج التثقيفى 
                 </label>
@@ -376,7 +376,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                 رقم رخصة المنشأة {" "}
                 </label>
@@ -391,7 +391,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                 اسم المنشأة
                 </label>
@@ -406,7 +406,7 @@ const UserHome = () => {
 
                 <label
                   htmlFor="municipal"
-                  className="absolute  font-semibold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
+                  className="absolute  font-bold text-[100%] text-black -top-2.5 right-2.5 bg-white px-1 flex items-center"
                 >
                   رقم المنشأة{" "}
                 </label>
