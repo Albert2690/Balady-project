@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import Cookie from "js-cookie";
 import "./Header.css"; // Import the CSS file for additional styling
-import logo from  '../../assets/logo-3.jpeg'
+import logo from  '../../assets/Balady services_Logo new white.png'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,33 +35,38 @@ function Header() {
   return (
     <nav className={`${isMenuOpen? 'header': 'header h-[80px]'} `}>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <div className="flex items-center ml-3 justify-between w-full lg:w-auto">
+        <div className="flex items-center ml-3 justify-around w-full lg:w-auto">
         <button
-            data-collapse-toggle="mobile-menu-2"
-            onClick={toggleMenu}
-            type="button"
-            className="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden"
-            aria-controls="mobile-menu-2"
-            aria-expanded={isMenuOpen ? "true" : "false"}
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className={'w-6 h-6'}
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </button>
+  data-collapse-toggle="mobile-menu-2"
+  onClick={toggleMenu}
+  type="button"
+  className="inline-flex items-center p-3 ml-1 text-sm text-white rounded-lg focus:outline-none  lg:hidden"
+  aria-controls="mobile-menu-2"
+  aria-expanded={isMenuOpen ? "true" : "false"}
+  style={{
+    fontSize: '24px',
+    color:'white' // Default size for the icon
+  }}
+>
+  <span className="sr-only">Open main menu</span>
+  <svg
+    className="w-8 h-8 sm:w-10 sm:h-10" // Increase size for small screens
+    fill="currentColor"
+    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fillRule="evenodd"
+      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+      clipRule="evenodd"
+    ></path>
+  </svg>
+</button>
+
           <img
             src={logo}
             alt="Logo"
-            className="h-16 w-30 ml-2 lg:ml-8"
+            className="h-16 w-30 ml-[80px] lg:ml-8"
           />
       
         </div>

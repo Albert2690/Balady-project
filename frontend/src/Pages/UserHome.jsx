@@ -119,11 +119,11 @@ const UserHome = () => {
       <div className="bg-white  items-center rounded-lg  rounded-t  md:shadow-lg relative sm:mx-0 md:mx-auto lg:mx-auto max-w-full sm:max-w-full md:max-w-lg lg:max-w-3xl mt-6 md:mt-9  w-full h-full max-h-90 p-4 sm:p-6">
       <hr className="w-full border-t-[4px] border-gray-100 shadow-sm" />
 
-        <div className="flex items-center justify-center  px-4 ">
-          <h2 className=" md:max-w-[400px] text-center font-bold text-[2rem] text-gray-700 ">
+        <div className="flex items-center justify-center  ">
+          <h2 className=" md:max-w-[400px] text-center font-bold text-[30px] text-[#484e56] ">
             {" "}
-            شهادة صحية سنوية
-          </h2>
+            الشهادة الصحية الموحدة        
+              </h2>
         </div>
         <div className="p-4 sm:p-6 md:p-8 space-y-6">
           <div className="flex flex-col items-center">

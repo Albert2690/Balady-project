@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import Cookie from "js-cookie";
 import "./Header.css"; // Import the CSS file for additional styling
-import logo from  '../../assets/logo-3.jpeg'
+// import logo from  '../../assets/logo (2).svg'
+import logo from  '../../assets/Balady services_Logo new white.png'
+
+// frontend/src/assets/logo (1).svg
+
 
 
 
@@ -80,7 +84,7 @@ function Header() {
           />
       
         </div>
-        <div
+        <div 
           className={`w-full lg:flex lg:items-center mx-3 lg:w-auto ${
             isMenuOpen ? "block" : "hidden"
           } lg:block`}

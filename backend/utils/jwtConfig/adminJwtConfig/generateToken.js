@@ -9,10 +9,10 @@ const generateToken = (res, adminId) => {
 
   const cookieOptions = {
     httpOnly: false,
-    secure: false, // Set to true if using HTTPS
-    sameSite: 'strict', // 'strict' or 'lax' based on your needs
-    maxAge: 40 * 24 * 60 * 60 * 1000, // 40 days
-    path: '/', // Global path
+    secure: false, 
+    sameSite: 'strict', 
+    maxAge: 40 * 24 * 60 * 60 * 1000, 
+    path: '/', 
   };
 
   // if (process.env.NODE_ENV === 'production') {

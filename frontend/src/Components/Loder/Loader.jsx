@@ -3,7 +3,7 @@ import React from 'react';
 import './Loader.css'; 
 import logo from '../../assets/logo-balady.png'
 import BounceLoader from 'react-spinners/BounceLoader';
-import logo1 from '../../assets/loader-logo.png'
+import logo1 from  '../../assets/logo (2).svg'
 
 
 

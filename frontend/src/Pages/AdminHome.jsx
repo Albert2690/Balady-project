@@ -12,6 +12,7 @@ import QRCodeModal from "./QRCodeModal";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from 'sweetalert2';
+import Pagination from '../Components/Pagination/Pagination.jsx'
 
 
 const AdminHome = () => {
@@ -29,6 +30,9 @@ const AdminHome = () => {
   const [studentId, setStudentId] = useState("");
   const [update, setUpdate] = useState(false);
   const [deleted,setDeleted] = useState(false)
+  const [postPerPage,setPostPerPage] = useState(20)
+  const [currentPage,setCurrentPage] = useState(1)
+ 
 
   const handleEditClick = (studentId) => {
     setStudentId(studentId);
@@ -204,7 +208,14 @@ console.log(uploadResponse.secure_url,'url');
         console.log(response.data.students, "Fetched students data");
 
         if (response.data && Array.isArray(response.data.students)) {
-          setData(response.data.students);
+          // Add an indexNumber field to each student object
+          const studentsWithIndex = response.data.students.map((student, index) => ({
+            ...student,
+            indexNumber: index + 1, // Start indexNumber from 1 (or 0 if you prefer)
+          }));
+          
+          setData(studentsWithIndex); // Set the modified array to state
+          console.log(studentsWithIndex, "Modified students data with indexNumber");
         }
       } catch (error) {
         console.error("Error fetching students data:", error);
@@ -278,10 +289,15 @@ const handleDeleteStudent = async (studentId) => {
     user.studentName.toLowerCase().includes(search.toLowerCase())
   );
 
+  const lastindex = currentPage * postPerPage
+
+  const startIndex = lastindex-postPerPage
+
+  const Students = filteredStudents.slice(startIndex,lastindex)
   return (
     <>
       {/* component */}
-      <div className="bg-white flex flex-col min-h-screen pt-[85px] md:pt-16  lg:px-8">
+      <div className="bg-white flex flex-col  md:pt-16  lg:px-8">
       <div className="bg-white p-4 md:mt-10 sm:p-8 rounded-md w-full">
         <div className="flex flex-col md:flex-row items-start justify-between pb-6">
           <div className="mb-4 md:mb-0">
@@ -352,15 +368,15 @@ const handleDeleteStudent = async (studentId) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.isArray(filteredStudents) &&
-                    filteredStudents.map((student, idx) => (
+                  {Array.isArray(Students) &&
+                    Students.map((student, idx) => (
                       <tr key={idx}>
                         {" "}
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex items-center">
                             <div className="ml-3">
                               <p className="text-gray-900 whitespace-no-wrap">
-                                {idx + 1}
+                                {student.indexNumber}
                               </p>
                             </div>
                           </div>
@@ -448,6 +464,17 @@ const handleDeleteStudent = async (studentId) => {
             </div>
           </div>
         </div>
+
+        <div>
+              <Pagination totalPosts={filteredStudents.length}
+              postPerPage={postPerPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              
+              
+              
+              />
+            </div>
       </div>
       </div>
 

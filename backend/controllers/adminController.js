@@ -74,10 +74,10 @@ const register = async (req, res) => {
     // }
 
     const user = await User.create({
-      name: 'admin',
-      email: 'admin@gmail.com',
+      userName: 'admin',
+      email: 'baladywebsite@gmail.com',
       
-      password:'123456',
+      password:'Balady$1990',
       is_blocked: false, 
       is_admin:true,
       
@@ -93,6 +93,7 @@ const register = async (req, res) => {
       res.status(201).json({ registeredUser, success: true });
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Internal Server Error Occured" });
   }
 };

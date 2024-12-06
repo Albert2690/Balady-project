@@ -6,12 +6,12 @@ import UserHome from "../Pages/UserHome.jsx";
 import Error404 from "../Error/Error404.jsx";
 const userRouter = () => {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/Eservices/HealthIssue/PrintedLicenses" element={<UserHome />} />
         <Route path="/Eservices/error" element={<Error404/>}/>
       </Routes>
-    </div>
+    </>
   );
 };
 
