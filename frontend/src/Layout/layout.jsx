@@ -5,7 +5,7 @@ import AdminRouter from '../Routes/adminRouter.jsx'
 import {useLocation } from "react-router-dom";
 import UserHeader from '../Components/Header/UserHeader.jsx';
 import UserRouter from '../Routes/userRouter.jsx'
-import AccessibilityIconButton from '../Components/SideComponent/IconComponent.jsx';
+
 function layout() {
   const location = useLocation();
   const isUserPath = location.pathname.startsWith("/Eservices"); 
@@ -15,7 +15,7 @@ function layout() {
       <main >{isUserPath ?
       <>
       <UserRouter />
-       <AccessibilityIconButton/>
+      
       </>
        :
     

@@ -6,6 +6,7 @@ import logo from "../assets/albert.jpg";
 import Loader from "../Components/Loder/Loader.jsx";
 import UserHeader from '../Components/Header/UserHeader.jsx'
 import Footer from "../Components/Footer/Footer.jsx";
+import AccessibilityWidget from "../Components/SideComponent/IconComponent.jsx";
 
 
 function useQuery() {
@@ -416,6 +417,7 @@ const UserHome = () => {
         </div>
       </div>
       </div>
+       <AccessibilityWidget/>
      
       <Footer/>
       </>

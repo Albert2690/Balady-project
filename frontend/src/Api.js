@@ -3,7 +3,7 @@ const API_URL =
   process.env.NODE_ENV === "production"
 
   
-    ? process.env.CLIENT_URL:console.log('error');
+    ? process.env.CLIENT_URL:console.log('error');;
 
 const apiInstance = axios.create({
   // baseURL: API_URL,
