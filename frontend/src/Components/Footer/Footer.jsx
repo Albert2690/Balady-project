@@ -19,7 +19,7 @@ const Footer = () => {
                   وزارة الشؤون البلدية والقروية والإسكان
                 </p>
                 <p className="text-black text-xs md:text-sm lg:text-xs whitespace-nowrap text-center ml-2">
-                  2023 ©
+                  2025 ©
                 </p>
               </div>
 
