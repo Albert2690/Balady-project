@@ -20,12 +20,12 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
-  // origin: [
-  //   process.env.CLIENT_URL || 'http://www.balady.org.in',
+  origin: [
+    process.env.CLIENT_URL || 'http://www.balady.org.in',
     
-  // ],
+  ],
   
-  origin:'http://localhost:5173',
+  // origin:'http://localhost:5173',
   methods: "GET,POST,PUT,DELETE,OPTIONS", 
   allowedHeaders: "Content-Type,Authorization",
   credentials: true 
