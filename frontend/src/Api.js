@@ -6,7 +6,8 @@ const API_URL =
     ? process.env.CLIENT_URL:console.log('error');;
 
 const apiInstance = axios.create({
-  baseURL: API_URL,
+  // baseURL: API_URL,
+  baseURL:'http://localhost:7007/',
 });
 
 apiInstance.interceptors.request.use(

@@ -3,7 +3,7 @@
   width: 100%;
   overflow: hidden;
   position: fixed;
-  z-index: 1000; /* Ensure this is higher than other elements */
+  z-index: 50; /* Ensure this is higher than other elements */
   top: 0;
   left: 0;
 }
