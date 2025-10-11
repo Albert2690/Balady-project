@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
   origin: [
-    process.env.CLIENT_URL || 'http://www.balady.org.in',
+    process.env.CLIENT_URL || 'http://www.balady.website',
     
   ],
   
