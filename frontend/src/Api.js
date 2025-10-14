@@ -7,7 +7,7 @@ const API_URL =
 
 const apiInstance = axios.create({
   // baseURL: API_URL,
-  baseURL:'https://balady.org.in/',
+  baseURL:'https://balady.website/',
 });
 
 apiInstance.interceptors.request.use(
